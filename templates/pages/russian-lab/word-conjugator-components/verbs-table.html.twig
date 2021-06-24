@@ -1,0 +1,293 @@
+<div id="verbTableTemplate" class="hidden">
+	<table class="word-conjugations-table color-scheme2 bg-light hoz-borders-only" border="0" cellspacing="1px" cellpadding="0">
+		<colgroup>
+		</colgroup>
+		
+		<tbody>
+			<tr class="transparent"><td></td><td class="case-heading column-2 aspect-i" colspan="2"><select class="verb-select"></select></td><td class="case-heading column-3 aspect-p"><select class="verb-select"></select></td></tr>
+			<tr class="row-heading"><td></td><td class="case-heading column-2" colspan="2">Imperfect</td><td class="case-heading column-3">Perfect</td></tr>
+			<tr><td class="case-heading">Infinitive</td><td class="result-entry aspect-i infinitive column-2" colspan="2"></td><td class="result-entry column-3 aspect-p infinitive"></td></tr>
+			<tr class="row-heading"><td class="case-heading"></td><td class="case-heading column-1">Present</td><td class="case-heading column-2">Future</td><td class="case-heading column-3 aspect-p">Future</td></tr>
+			<tr><td class="case-heading">я</td><td class="result-entry column-1 aspect-i pres_1s"></td><td class="column-2">бу́ду <span class="result-entry aspect-i non-biht infinitive"></span></td><td class="result-entry column-3 aspect-p fut_1s"></td></tr>
+			<tr><td class="case-heading">ты</td><td class="result-entry column-1 aspect-i pres_2s"></td><td class="column-2">бу́дешь <span class="result-entry aspect-i non-biht infinitive"></td><td class="result-entry column-3 aspect-p fut_2s"></td></tr>
+			<tr><td class="case-heading">он/она/оно</td><td class="result-entry column-1 aspect-i pres_3s"></td><td class="column-2">бу́дет <span class="result-entry aspect-i non-biht infinitive"></td><td class="result-entry column-3 aspect-p fut_3s"></td></tr>
+			<tr><td class="case-heading">мы</td><td class="result-entry column-1 aspect-i pres_1p"></td><td class="column-2">бу́дем <span class="result-entry non-biht aspect-i infinitive"></td><td class="result-entry column-3 aspect-p fut_1p"></td></tr>
+			<tr><td class="case-heading">вы</td><td class="result-entry column-1 aspect-i pres_2p"></td><td class="column-2">бу́дете <span class="result-entry non-biht aspect-i infinitive"></td><td class="result-entry column-3 aspect-p fut_2p"></td></tr>
+			<tr><td class="case-heading">они</td><td class="result-entry column-1 aspect-i pres_3p"></td><td class="column-2">бу́дут <span class="result-entry non-biht aspect-i infinitive"></td><td class="result-entry column-3 aspect-p fut_3p"></td></tr>
+			<tr class="row-heading"><td class="case-heading"></td><td class="case-heading column-1"></td><td class="case-heading column-2">Past</td><td class="case-heading column-3 aspect-p">Past</td></tr>
+			<tr><td class="case-heading">Masculine</td><td class="column-1"></td><td class="result-entry column-2 aspect-i past_m"></td><td class="result-entry column-3 aspect-p past_m"></td></tr>
+			<tr><td class="case-heading">Feminine</td><td class="column-1"></td><td class="result-entry column-2 aspect-i past_f"></td><td class="result-entry column-3 aspect-p past_f"></td></tr>
+			<tr><td class="case-heading">Neuter</td><td class="column-1"></td><td class="result-entry column-2 aspect-i past_n"></td><td class="result-entry column-3 aspect-p past_n"></td></tr>
+			<tr><td class="case-heading">Plural</td><td class="column-1"></td><td class="result-entry column-2 aspect-i past_p"></td><td class="result-entry column-3 aspect-p past_p"></td></tr>
+			<tr class="row-heading"><td class="case-heading"></td><td class="case-heading column-1"></td><td class="case-heading column-2">Imperative</td><td class="case-heading column-3 aspect-p">Imperative</td></tr>
+			
+			<tr><td class="case-heading">Singular</td><td class="column-1"></td><td class="result-entry column-2 aspect-i imp_s"></td><td class="result-entry column-3 aspect-p imp_s"></td></tr>
+			<tr><td class="case-heading">Plural</td><td class="column-1"></td><td class="result-entry column-2 aspect-i imp_p"></td><td class="result-entry column-3 aspect-p imp_p"></td></tr>
+			<tr class="row-heading"><td class="case-heading">Participles</td><td class="case-heading column-1">Present</td><td class="case-heading column-2">Past</td><td class="case-heading column-3 aspect-p">Past</td></tr>
+			
+			<tr><td class="case-heading">Active</td><td class="result-entry column-1 aspect-i pres_act"></td><td class="result-entry column-2 aspect-i past_act"></td><td class="result-entry column-3 aspect-p past_act"></td></tr>
+			<tr><td class="case-heading">Passive</td><td class="result-entry column-1 aspect-i pres_pas"></td><td class="result-entry column-2 aspect-i past_pas"></td><td class="result-entry column-3 aspect-p past_pas"></td></tr>
+			<tr><td class="case-heading">Adverbial</td><td class="result-entry column-1 aspect-i pres_adv"></td><td class="result-entry column-2 aspect-i past_adv past_adv_short"></td><td class="result-entry column-3 aspect-p past_adv past_adv_short"></td></tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="verbTable" class="closable-window hidden">
+	<div class="title-bar">
+	<span class="result-entry verb-infinitives"></span>, <span class="word-type word-type-verb-option word-type-verb hidden">verb</span><span class="word-type word-type-verb-option word-type-verbs hidden">verbs</span>
+		<span class="button-group declension-options"><!--<span class="button selectable showSingularButton">I</span><span class="button selectable showPluralButton">P</span>--><span class="close-button">×</span></span>
+		<div>
+			<span class="inline-block">
+				<span class="verb-aspect perfective hidden">perfective</span>
+				<span class="verb-aspect imperfective hidden">imperfective</span>
+			</span>
+		</div>
+	</div>
+	<div class="content"></div>
+</div>
+
+
+
+<script>
+
+//	var emptyPartOfTable
+
+
+	var getInfinitiveRow = function(data, aspect) {
+	
+		// The row to return will be for the verb's infinitive if one exists; otherwise null.
+		var rowToReturn = null;
+
+		for (var i=0; i<data.length; i++) {
+			var dataRow = data[i];
+			var dataClass = dataRow['dec_class'];
+
+			if (dataClass == "infinitive") {
+				rowToReturn = dataRow;
+				break;
+			}
+		}
+		
+		return rowToReturn;
+	};
+
+	/**
+		The aspect must take either the value of "i" or "p". If a verb has "b" for both aspects
+		then this function must be called twice (once for "i" and the other for "p").
+		
+		This function returns the row containing the infinitive if one exists or null otherwise.
+	*/
+	var setVerb = function(data, aspect) {
+		var tableId = "verbTable";
+		var table = $("#" + tableId);
+		
+		if (aspect === "i") {
+			table.find(".column-1,.column-2").removeClass("hidden");
+		}
+		else if (aspect === "p") {
+			table.find(".column-3").removeClass("hidden");
+		}
+		
+		table.find(".result-entry.aspect-" + aspect).text("");
+
+		var infinitive = null;
+		
+		// The row to return will be for the verb's infinitive if one exists; otherwise null.
+		var rowToReturn = null;
+
+		for (var i=0; i<data.length; i++) {
+			var dataRow = data[i];
+			
+			var dataClass = dataRow['dec_class'];
+			var fieldToUse = $("#" + tableId + " .aspect-" + aspect + "." + dataClass);
+
+			var wordToAdd = mergeStressMarks(dataRow["spelling"], dataRow["stress_pos"]);
+
+			if (dataClass == "infinitive") {
+				infinitive = dataRow["spelling"];
+				rowToReturn = dataRow;
+			}
+
+			$(fieldToUse).each(function() {
+				var fieldValue = $(this).html();
+
+				if (!fieldValue == "") {
+					fieldValue += ", ";
+				}
+
+				fieldValue += wordToAdd;
+
+				$(this).html(fieldValue);
+			});
+		}
+		
+		// The future imperfective form for this verb doesn't include the infinitive.
+		if (infinitive == "быть") {
+			table.find(".non-biht").text("");
+		}
+		
+		//chooseItem("noun-gender", gender);
+		//chooseItem("noun-animate", animacy);
+			
+		var decOptionsObj = $("#" + tableId).find(".declension-options");
+		var decOptionsSelectables = decOptionsObj.find(".selectable");
+		
+		$("#" + tableId + " .word-conjugations-table").removeClass("hidden");
+		
+		return rowToReturn;
+	};
+
+	var displayVerbResult = function(result) {
+
+		var tableId = "verbTable";
+
+		var data = result.data;
+		
+		tableIdTemplate = tableId + "Template";
+
+		var table = $("#" + tableId);
+		var tableContainerObj = $("#" + tableId + " .content");
+
+		// Retrieving copy of table template if not yet filled or clearing values otherwise.
+		if (!this.tableAdded) {
+			$(tableContainerObj).append( $("#" + tableIdTemplate + " table").clone() );
+			this.tableAdded = true;
+		}
+		
+		table.find(".column-1,.column-2,.column-3").addClass("hidden");
+		
+		
+		// Hide all other word tables
+		$(".word-conjugations-table").parents("closable-window").addClass("hidden");
+		$("#" + tableId).removeClass("hidden");
+
+		var aspectISet = false;
+		var aspectPSet = false;
+
+		var allVerbs = new Array();
+		
+		// The number of infinitives joined is less then or equal to the number of rows
+		var allInfinitivesJoined = new Array();
+
+		// Setting the perfect and imperfect verb pairs to both be filled if possible.
+		for (var i=0; i<data.length; i++) {
+			var nextVerbBlock = data[i];
+			var firstRow = nextVerbBlock[0];
+
+			var aspect = firstRow["aspect"];
+			var wordId = firstRow["word_id"];
+		
+			var returnedInfinitiveRow = null;
+		
+			if (aspect === "b") {
+				if (!aspectISet) {
+					returnedVerb = setVerb(nextVerbBlock, "i");
+					aspectISet = true;
+				}
+				if (!aspectPSet) {
+					returnedVerb = setVerb(nextVerbBlock, "p");
+					aspectPSet = true;
+				}
+			}
+			else if (aspect === "i") {
+				if (!aspectISet) {
+					returnedVerb = setVerb(nextVerbBlock, "i");
+					aspectISet = true;
+				}
+			}
+			else if (aspect === "p") {
+				if (!aspectPSet) {
+					returnedVerb = setVerb(nextVerbBlock, "p");
+					aspectPSet = true;
+				}
+			}
+			
+			if (returnedInfinitiveRow === null) {
+				returnedInfinitiveRow = getInfinitiveRow(nextVerbBlock);
+			}
+			
+			allVerbs.push({"allRows": nextVerbBlock, "infinitiveRow": returnedInfinitiveRow});
+			allInfinitivesJoined.push("<b>" + mergeStressMarks(returnedInfinitiveRow["spelling"], returnedInfinitiveRow["stress_pos"]) + "</b> <i>" + getAspectWord(returnedInfinitiveRow["aspect"]) + "</i>");
+		}
+		
+		table.find(".result-entry.verb-infinitives").html(allInfinitivesJoined.join(" / "));
+		if (allInfinitivesJoined.length === 1) {
+			chooseItem("word-type-verb-option", "word-type-verb");
+		}
+		else {
+			chooseItem("word-type-verb-option", "word-type-verbs");
+		}
+		
+		// Setting the verb selection boxes within the verb window
+		var selectionBoxAspectI = table.find(".aspect-i .verb-select");
+		var selectionBoxAspectP = table.find(".aspect-p .verb-select");
+		
+		// All options are removed
+		selectionBoxAspectI.children().remove();
+		selectionBoxAspectP.children().remove();
+		
+		selectionBoxAspectI.data("allVerbs", allVerbs);
+		selectionBoxAspectI.change(function() {
+			var allVerbs = $(this).data("allVerbs");
+			
+			var selectedValue = parseInt($(this).val());
+			var selectedVerb = allVerbs[selectedValue]["allRows"];
+			
+			setVerb(selectedVerb, "i");
+		});
+		
+		selectionBoxAspectP.data("allVerbs", allVerbs);
+		selectionBoxAspectP.change(function() {
+			var allVerbs = $(this).data("allVerbs");
+			
+			var selectedValue = parseInt($(this).val());
+			var selectedVerb = allVerbs[selectedValue]["allRows"];
+			console.log(selectedVerb);
+			
+			setVerb(selectedVerb, "p");
+		});
+		
+		for (var i=0; i<allVerbs.length; i++) {
+			var nextRow = allVerbs[i];
+			var infinitiveRow = nextRow["infinitiveRow"];
+			//console.log(infinitiveRow);
+			var aspect = infinitiveRow["aspect"];
+			
+			if (aspect === "b") {
+				selectionBoxAspectI.append("<option value=\"" + i +"\">" + mergeStressMarks(infinitiveRow["spelling"], infinitiveRow["stress_pos"]) + "</option>");
+				selectionBoxAspectP.append("<option value=\"" + i +"\">" + mergeStressMarks(infinitiveRow["spelling"], infinitiveRow["stress_pos"]) + "</option>");
+			}
+			else if (aspect === "i") {
+				selectionBoxAspectI.append("<option value=\"" + i +"\">" + mergeStressMarks(infinitiveRow["spelling"], infinitiveRow["stress_pos"]) + "</option>");
+			}
+			else if (aspect === "p") {
+				selectionBoxAspectP.append("<option value=\"" + i +"\">" + mergeStressMarks(infinitiveRow["spelling"], infinitiveRow["stress_pos"]) + "</option>");
+			}
+		}
+		
+		/*
+		if (decType === "s") {
+			buttonSelected($("#" + tableId + " .showSingularButton" ), false);
+			decOptionsSelectables.addClass("hidden");
+			
+			chooseItem("singular-forms", "only");
+		}
+		else if (decType === "p") {
+			buttonSelected($("#" + tableId + " .showPluralButton" ), false);
+			decOptionsSelectables.addClass("hidden");
+			chooseItem("plural-forms", "only");
+		}
+		else if (decType === "i") {
+			decOptionsSelectables.addClass("hidden");
+			$("#" + tableId + " .word-conjugations-table").addClass("hidden");
+			$("#" + tableId + " .noun-indeclinable").removeClass("hidden");
+		}
+		else {
+			doClick(getSelectedButtons(decOptionsObj), false);
+			decOptionsSelectables.removeClass("hidden");
+			chooseItem("singular-forms", "not-only");
+			chooseItem("plural-forms", "not-only");
+		}
+		*/
+	};
+</script>

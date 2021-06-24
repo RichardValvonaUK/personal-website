@@ -1,0 +1,216 @@
+<div id="nounTableTemplate" class="hidden">
+	<table class="word-conjugations-table color-scheme2 bg-light hoz-borders-only" border="0" cellspacing="1px" cellpadding="0">
+		<colgroup>
+		</colgroup>
+		<tbody>
+			<tr class="row-heading">
+				<td></td>
+				<td class="singular-cell case-heading">
+					<span class="singular-forms not-only hidden">Singular forms</span><span class="singular-forms only hidden">Singular only</span>
+				</td>
+				<td class="plural-cell case-heading">
+					<span class="plural-forms not-only hidden">Plural forms</span><span class="plural-forms only hidden">Plural only</span>
+				</td>
+			</tr>
+			<tr><td class="case-heading">Nom</td><td class="singular-cell result-entry dec_s_n"></td><td class="plural-cell result-entry dec_p_n"></td></tr>
+			<tr><td class="case-heading">Acc</td><td class="singular-cell result-entry dec_s_a"></td><td class="plural-cell result-entry dec_p_a"></td></tr>
+			<tr><td class="case-heading">Gen</td><td class="singular-cell result-entry dec_s_g"></td><td class="plural-cell result-entry dec_p_g"></td></tr>
+			<tr><td class="case-heading">Dat</td><td class="singular-cell result-entry dec_s_d"></td><td class="plural-cell result-entry dec_p_d"></td></tr>
+			<tr><td class="case-heading">Ins</td><td class="singular-cell result-entry dec_s_i dec_s_i_alt"></td><td class="plural-cell result-entry dec_p_i"></td></tr>
+			<tr><td class="case-heading">Pre</td><td class="singular-cell result-entry dec_s_p"></td><td class="plural-cell result-entry dec_p_p"></td></tr>
+			<tr class="extra-case hidden"><td class="case-heading">Par</td><td class="singular-cell result-entry dec_s_par"></td><td class="plural-cell result-entry"></td></tr>
+			<tr class="extra-case hidden"><td class="case-heading">Loc</td><td class="singular-cell result-entry dec_s_loc"></td><td class="plural-cell result-entry"></td></tr>
+			<tr class="extra-case hidden"><td class="case-heading">Voc</td><td class="singular-cell result-entry dec_s_voc"></td><td class="plural-cell result-entry"></td></tr>
+		</tbody>
+	</table>
+</div>
+<div id="nounTable" class="closable-window hidden">
+	<div class="title-bar">
+	<b><span class="result-entry dict-form"></span></b>, <span class="word-type">noun</span>
+		<span class="button-group declension-options"><span class="button selectable showSingularButton">S</span><span class="button selectable showPluralButton">P</span><span class="close-button">×</span></span>
+		<div>
+			<span class="inline-block">
+				<span class="noun-gender m hidden">m</span>
+				<span class="noun-gender f hidden">f</span>
+				<span class="noun-gender n hidden">n</span>
+			</span>
+			<span class="inline-block">
+				<span class="noun-animate a hidden">animate</span>
+				<span class="noun-animate i hidden">inanimate</span>
+			</span><span class="noun-indeclinable hidden">,</span>
+			<span class="inline-block">
+				<span class="noun-indeclinable hidden">indeclinable</span>
+			</span>
+		</div>
+	</div>
+	<div class="content"></div>
+</div>
+
+<script>
+	var displayNounResult = function(result) {
+
+		var tableId = "nounTable";
+
+		var data = result.data[0];
+		var firstRow = data[0];
+
+
+		var animacy = firstRow["is_animate"];
+		var gender = firstRow["gender"];
+		var decType = firstRow["dec_type"];
+
+		tableIdTemplate = tableId + "Template";
+
+		var table = $("#" + tableId);
+		var tableContainerObj = $("#" + tableId + " .content");
+
+		$(tableContainerObj).empty();
+		$(tableContainerObj).append( $("#" + tableIdTemplate + " table").clone() );
+		
+		// Hide all other word tables
+		$(".word-conjugations-table").parents("closable-window").addClass("hidden");
+
+		$("#" + tableId).removeClass("hidden");
+
+		var accusativeSingularExists = false;
+
+		var dictFormS = null;
+		var dictFormP = null;
+		var dictForm = null;
+
+		for (var i=0; i<data.length; i++) {
+			var dataRow = data[i];
+			if (dataRow['dec_class'] == "dec_s_a") {
+				accusativeSingularExists = true;
+			}
+			else if (dataRow['dec_class'] == "dec_s_n") {
+				if (dictFormS == null) {
+					dictFormS = mergeStressMarks(dataRow["spelling"], dataRow["stress_pos"]);
+				}
+			}
+			else if (dataRow['dec_class'] == "dec_p_n") {
+				if (dictFormP == null) {
+					dictFormP = mergeStressMarks(dataRow["spelling"], dataRow["stress_pos"]);
+				}
+			}
+		}
+
+		dictForm = dictFormS == null ? dictFormP : dictFormS;
+		table.find(".result-entry.dict-form").html(dictForm);
+
+		if (!accusativeSingularExists) {
+			if (animacy == "a") {
+				table.find(".result-entry.dec_s_a").addClass("dec_s_g");
+			}
+			else if (animacy == "i") {
+				table.find(".result-entry.dec_s_a").addClass("dec_s_n");
+			}
+			else if (animacy == "b") {
+				table.find(".result-entry.dec_s_a").addClass("dec_s_n");
+				table.find(".result-entry.dec_s_a").addClass("dec_s_g");
+			}
+		}
+
+		if (animacy == "a") {
+			table.find(".result-entry.dec_p_a").addClass("dec_p_g");
+		}
+		else if (animacy == "i") {
+			table.find(".result-entry.dec_p_a").addClass("dec_p_n");
+		}
+		else if (animacy == "b") {
+			table.find(".result-entry.dec_p_a").addClass("dec_p_n");
+			table.find(".result-entry.dec_p_a").addClass("dec_p_g");
+		}
+
+		for (var i=0; i<data.length; i++) {
+			var dataRow = data[i];
+			var dataClass = dataRow['dec_class'];
+			var fieldToUse = $("#" + tableId + " ." + dataClass);
+
+			if (dataClass=="dec_s_par" || dataClass=="dec_s_loc" || dataClass=="dec_s_voc") {
+				fieldToUse.parent().removeClass("hidden");
+			}
+
+			var wordToAdd = mergeStressMarks(dataRow["spelling"], dataRow["stress_pos"]);
+
+			$(fieldToUse).each(function() {
+				var fieldValue = $(this).html();
+
+				if (!fieldValue == "") {
+					fieldValue += ", ";
+				}
+
+				fieldValue += wordToAdd;
+
+				$(this).html(fieldValue);
+			});
+
+		}
+		
+		chooseItem("noun-gender", gender);
+		chooseItem("noun-animate", animacy);
+			
+		var decOptionsObj = $("#" + tableId).find(".declension-options");
+		var decOptionsSelectables = decOptionsObj.find(".selectable");
+		
+		$("#" + tableId + " .word-conjugations-table").removeClass("hidden");
+		$("#" + tableId + " .noun-indeclinable").addClass("hidden");
+		
+		if (decType === "s") {
+			buttonSelected($("#" + tableId + " .showSingularButton" ), false);
+			decOptionsSelectables.addClass("hidden");
+			
+			chooseItem("singular-forms", "only");
+		}
+		else if (decType === "p") {
+			buttonSelected($("#" + tableId + " .showPluralButton" ), false);
+			decOptionsSelectables.addClass("hidden");
+			chooseItem("plural-forms", "only");
+		}
+		else if (decType === "i") {
+			decOptionsSelectables.addClass("hidden");
+			$("#" + tableId + " .word-conjugations-table").addClass("hidden");
+			$("#" + tableId + " .noun-indeclinable").removeClass("hidden");
+		}
+		else {
+			doClick(getSelectedButtons(decOptionsObj), false);
+			decOptionsSelectables.removeClass("hidden");
+			chooseItem("singular-forms", "not-only");
+			chooseItem("plural-forms", "not-only");
+		}	
+	};
+	
+		
+	var detectNounButtons = function(button, currentlySelected) {
+	
+		var successful = true;
+		
+		if (currentlySelected) {
+			if (button.hasClass("showSingularButton") || button.hasClass("showPluralButton")) {
+				var dialog = getDialog(button);
+				dialog.find(".singular-cell").removeClass("hidden");
+				dialog.find(".plural-cell").removeClass("hidden");
+			}
+			else {
+				successful = false;
+			}
+		}
+		else {
+			if (button.hasClass("showSingularButton")) {
+				var dialog = getDialog(button);
+				dialog.find(".singular-cell").removeClass("hidden");
+				dialog.find(".plural-cell").addClass("hidden");
+			}
+			else if (button.hasClass("showPluralButton")) {
+				var dialog = getDialog(button);
+				dialog.find(".singular-cell").addClass("hidden");
+				dialog.find(".plural-cell").removeClass("hidden");
+			}
+			else {
+				successful = false;
+			}
+		}
+	
+		return successful;
+	};
+</script>

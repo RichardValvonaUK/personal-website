@@ -1,0 +1,220 @@
+{% extends "/standard-page.html.twig" %}
+
+{% block title %}Assisted Text Editor{% endblock %}
+
+{% block content %}
+<p>Use this little app if you wish to know how a word is declined. The data used in this database has been extracted from Wiktionary and converted to MySQL so that you can easily find any word you want and see all of its declinations including any lesser well-known ones. It doesn't matter whether you lookup the instrumental form of a noun or the comparative of a verball word forms for a word are in the database. Also, it doesn't matter whether you know how a word is spelt. The search algorithm used in this app has been designed for sorting results starting with the closest spelling while keeping a high efficiency.
+<br/><br/>
+You can currently search for nouns, adjectives and verbs but other word types will be added in the near future so stay put. Also, please check out the <?php echo \URLS::localLink('Cardinal Number Conjugator here', '/russian-lab/cardinal-numbers-with-nouns', null); ?> which allows you to see the declinations for any positive integer.
+</p>
+
+<form>
+	<div id="text-editor" class="advanced-text-editor" contenteditable="true" placeholder="Enter your text here" style="background-color: #fff; color: #222; width: 100%; height: 200px;" oninput="">nflsfn</div>
+	
+	<input id="searchTextRussian" type="search" />
+	<input id="searchTextEnglish" type="search" />
+	<input id="searchTextHelpButton" type="button" value=" ? " />
+	<input id="searchButton" type="button" value="Search" />
+	<input id="randomButton" type="button" value="Random" />
+	<input id="searchTextOptionRussian" name="searchTextOption" type="radio" value="russian" checked="checked" /><label for="searchTextOptionRussian">Russian</label>
+	<input id="searchTextOptionEnglish" name="searchTextOption" type="radio" value="english" /><label for="searchTextOptionEnglish">English</label>
+	
+	<br/><br/>
+	<table id="resultsListTemplate" class="language-table color-scheme2 bg-light hidden" border="0" cellpadding="0">
+		<tbody>
+			<tr class="result-entry selectable"><td class="word"></td><td class="desc"></td>
+		</tbody>
+	</table>
+	<div id="resultsListHolder" class="bg-light">
+		<table id="resultsList" class="language-table color-scheme2 bg-light" border="0" cellpadding="0">
+			<colgroup>
+			</colgroup>
+			<tbody>
+				<tr><td colspan="2" class="title">Enter text in box above to search for a word</td></tr>
+			</tbody>
+		</table>
+	</div>
+	<span class="bg-light">
+		<?php require('nouns-table.html'); ?>
+		<?php require('adjectives-table.html'); ?>
+		<?php require('verbs-table.html'); ?>
+	</span>
+	<br/>
+</form>
+<script type="text/javascript">
+	<?php require('word-conjugator-maps-and-arrays.js'); ?>
+	<?php require('word-conjugator-functions.js'); ?>
+	<?php require('word-conjugator-search-text-russian-operations.js'); ?>
+	
+	
+	var cyrillicLetters = "бвгджзклмнпрстфхцчшщйаэыуояеёюиьъ";
+	
+	
+	var cyrillicSet = new Set();
+	
+	for (var i=0; i<33; i++) {
+		cyrillicSet.add(cyrillicLetters.charAt(i));
+	}
+	
+	$("body").addClass("no-refresh-scroll");
+
+
+	$( "#transliteration" ).mousedown(function(e){
+		//e.preventDefault();
+	});
+
+	$( "#transliteration .key-to-press" ).click(function(e){
+		insertText($("#searchTextRussian"), $(this).text());
+	});
+
+	$( "#variantsCheckBox" ).change(function() {
+		doSearch();
+	});
+
+	$("#searchButton").click(function(){
+		updateDisplay();
+	});
+	
+	$("#randomButton").on('click', function(e) {
+		setSearchWordFromId("random");
+	});
+	
+	
+	var isPartOfAWord = function(character) {
+		if (cyrillicSet.has(character.toLowerCase())) {
+			return true;
+		}
+		else if (character == '-') {
+			return true;
+		}
+	
+		return false;
+	};
+	
+	
+	var n=0;
+	
+	
+	
+	var updateDisplay = function(result) {
+		var textEditor = $("#text-editor");
+		var textEditorDOM = $("#text-editor")[0];
+		
+		var range = document.getSelection().getRangeAt(0);
+
+		var startContainer = range.startContainer;
+		var endContainer = range.endContainer;
+		var parentElementS = range.startContainer;
+		var parentElementE = range.endContainer;
+		
+		console.log(range);
+		//console.log(parentElementE);
+		
+		//console.log
+		//document.execCommand('foreColor', false, '#f00');
+		//document.execCommand("insertHTML", false, "dq<span class='help'><b>ins</b></span>lf	");
+	};
+	
+	var textEditorCharEntered = function(e) {
+		e.preventDefault();
+		
+		var charInput = String.fromCharCode( e.which );
+		var htmlInput = charInput;
+		
+		
+		var range = document.getSelection().getRangeAt(0);
+		
+		var startContainer = range.startContainer;
+		var endContainer = range.endContainer;
+		var parentElementS = range.startContainer;
+		var parentElementE = range.endContainer;
+		
+		//console.log(parentElementS);
+		//console.log(parentElementE);
+		//console.log(endContainer);
+		
+		if (charInput == ' ' || isPartOfAWord(charInput)) {
+			console.log(charInput);
+			n++;
+			range.deleteContents();
+			
+			
+			
+			var endContainer = range.endContainer;
+			var endNodeName = range.endContainer.nodeName.toLowerCase();
+			
+			let newNode = document.createElement('span');
+			
+			newNode.classList.add("character");
+			if (charInput == ' ') {
+				newNode.classList.add("character-space");
+			}
+			
+			
+			newNode.innerHTML = charInput;
+			
+			
+			console.log(endNodeName);
+			
+			
+			if (endNodeName === "#text") {
+				parentNodeName = endContainer.parentNode.nodeName.toLowerCase();
+				console.log(parentNodeName);
+				if (parentNodeName === "span") {
+					$(endContainer.parentNode).after(newNode);
+				}
+				else if (parentNodeName === "div") {
+					range.insertNode(newNode);
+				}
+			}
+			else if (endNodeName === "span") {
+				$(endContainer).after(newNode);
+			}
+			else if (endNodeName === "div") {
+				range.insertNode(newNode);
+			}
+			
+			
+			if (newNode.previousSibling) {
+				if (newNode.previousSibling.innerHTML.trim() === "") {
+					
+				}
+			}
+			if (newNode.nextSibling) {
+				if (newNode.nextSibling.innerHTML.trim() === "") {
+				
+				}
+			}
+			
+			
+			range.setStart(newNode, 1);
+			range.setEnd(newNode, 1);
+			
+			
+			//var newRange = range.cloneRange();
+			//range.setStartAfter(endContainer.nextSibling);
+			//range.setEndAfter(endContainer.nextSibling);
+		}
+	};
+	
+	$(document).ready(function() {
+		enableButtons("#nounTable");
+		enableButtons("#adjectiveTable");
+		enableButtons("#verbTable");
+		
+		var textEditor = $("#text-editor");
+		textEditor.keypress(function(e) {
+			textEditorCharEntered(e);
+		});
+	});
+	
+	
+	
+	$(document).keyup(function(e) {
+		if (e.keyCode === 27) {
+			$('.closable-window').addClass("hidden");
+		}
+	});
+	
+</script>
+{% endblock %}

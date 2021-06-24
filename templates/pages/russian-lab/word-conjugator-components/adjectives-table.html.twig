@@ -1,0 +1,272 @@
+<div id="adjectiveTableTemplate" class="hidden">
+	<table class="main-table word-conjugations-table color-scheme2 bg-light hoz-borders-only" border="0" cellspacing="1px" cellpadding="0">
+		<colgroup>
+		</colgroup>
+		<tbody>
+			<tr class="row-heading">
+				<td></td>
+				<td class="m-cell case-heading">Masculine</td>
+				<td class="f-cell case-heading">Feminine</td>
+				<td class="n-cell case-heading">Neuter</td>
+				<td class="p-cell case-heading">Plural</td>
+			</tr>
+			<tr class="main-forms">
+				<td class="case-heading">Nom</td>
+				<td class="m-cell result-entry dec_nom_m"></td>
+				<td class="f-cell result-entry dec_nom_f"></td>
+				<td class="n-cell result-entry dec_nom_n"></td>
+				<td class="p-cell result-entry dec_nom_p"></td>
+			</tr>
+			<tr class="main-forms">
+				<td class="case-heading">Acc</td>
+				<td class="m-cell result-entry"><span class="dec_acc_m dec_nom_m"></span><span class="case-heading"><br/>(inanimate)</span><br/><span class="dec_acc_m dec_gen_m"></span><span class="case-heading"><br/>(animate)</span></td>
+				<td class="f-cell result-entry"><span class="dec_acc_f"></span><span class="case-heading invisible"><br/>(inanimate)</span><br/><span class="invisible"></span><span class="case-heading invisible"><br/>(animate)</span></td>
+				<td class="n-cell result-entry"><span class="dec_acc_n dec_nom_n"></span><span class="case-heading invisible"><br/>(inanimate)</span><br/><span class="invisible"></span><span class="case-heading invisible"><br/>(animate)</span></td>
+				<td class="p-cell result-entry"><span class="dec_acc_p dec_nom_p"></span><span class="case-heading"><br/>(inanimate)</span><br/><span class="dec_acc_p dec_gen_p"></span><span class="case-heading"><br/>(animate)</span></td>
+			</tr>
+			<tr class="main-forms">
+				<td class="case-heading">Gen</td>
+				<td class="m-cell result-entry dec_gen_m"></td>
+				<td class="f-cell result-entry dec_gen_f"></td>
+				<td class="n-cell result-entry dec_gen_n dec_gen_m"></td>
+				<td class="p-cell result-entry dec_gen_p"></td>
+			</tr>
+			<tr class="main-forms">
+				<td class="case-heading">Dat</td>
+				<td class="m-cell result-entry dec_dat_m"></td>
+				<td class="f-cell result-entry dec_dat_f dec_gen_f"></td>
+				<td class="n-cell result-entry dec_dat_n dec_dat_m"></td>
+				<td class="p-cell result-entry dec_dat_p"></td>
+			</tr>
+			<tr class="main-forms">
+				<td class="case-heading">Ins</td>
+				<td class="m-cell result-entry dec_ins_m"></td>
+				<td class="f-cell result-entry dec_ins_f dec_gen_f dec_ins_alt_f"></td>
+				<td class="n-cell result-entry dec_ins_n dec_ins_m"></td>
+				<td class="p-cell result-entry dec_ins_p"></td>
+			</tr>
+			<tr class="main-forms">
+				<td class="case-heading">Pre</td>
+				<td class="m-cell result-entry dec_pre_m"></td>
+				<td class="f-cell result-entry dec_pre_f dec_gen_f"></td>
+				<td class="n-cell result-entry dec_pre_n dec_pre_m"></td>
+				<td class="p-cell result-entry dec_pre_p dec_gen_p"></td>
+			</tr>
+			<tr class="short-forms hoz">
+				<td class="case-heading">Short forms</td>
+				<td class="sf-cell result-entry dec_short_m"></td>
+				<td class="sf-cell result-entry dec_short_f"></td>
+				<td class="sf-cell result-entry dec_short_n"></td>
+				<td class="sf-cell result-entry dec_short_p"></td>
+			</tr>
+			<tr class="other-forms hoz">
+				<td class="case-heading">Comparative</td>
+				<td class="result-entry dec_comp"></td>
+				<td class="case-heading">Superlative</td>
+				<td class="result-entry dec_sup"></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="short-forms-only word-conjugations-table color-scheme2 bg-light hoz-borders-only hidden" border="0" cellspacing="1px" cellpadding="0">
+		<colgroup>
+		</colgroup>
+		<tbody>
+			<tr class="short-forms row-heading">
+				<td></td>
+				<td class="case-heading">Short forms</td>
+			</tr>
+			<tr class="short-forms">
+				<td class="case-heading">Masculine</td>
+				<td class="dec_short_m"></td>
+			</tr>
+			<tr class="short-forms">
+				<td class="case-heading">Feminine</td>
+				<td class="dec_short_f"></td>
+			</tr>
+			<tr class="short-forms">
+				<td class="case-heading">Neuter</td>
+				<td class="dec_short_n"></td>
+			</tr>
+			<tr class="short-forms">
+				<td class="case-heading">Plural</td>
+				<td class="dec_short_p"></td>
+			</tr>
+			<tr class="other-forms">
+				<td class="case-heading">Comparative</td>
+				<td class="dec_comp"></td>
+			</tr>
+			<tr class="other-forms">
+				<td class="case-heading">Superlative</td>
+				<td class="dec_sup"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div id="adjectiveTable" class="closable-window hidden">
+	<div class="title-bar">
+	<b><span class="result-entry dict-form"></span></b>, <span class="word-type">adjective</span>
+		<span class="button-group declension-options">
+			<span class="button selectable showAdjMasculineButton">M</span>
+			<span class="button selectable showAdjFeminineButton">F</span>
+			<span class="button selectable showAdjNeuterButton">N</span>
+			<span class="button selectable showAdjPluralButton">P</span>
+			<span class="button selectable showAdjSFormsButton">O</span>
+			<span class="close-button">×</span>
+		</span>
+		<div>
+			<span class="inline-block">
+			</span>
+		</div>
+	</div>
+	<div class="content"></div>
+</div>
+
+<script>
+	var displayAdjectiveResult = function(result) {
+
+		var tableId = "adjectiveTable";
+
+		var data = result.data[0];
+		var firstRow = data[0];
+		
+		var decType = firstRow["dec_type"];
+
+		tableIdTemplate = tableId + "Template";
+
+		var table = $("#" + tableId);
+		var tableContainerObj = $("#" + tableId + " .content");
+
+		$(tableContainerObj).empty();
+		$(tableContainerObj).append( $("#" + tableIdTemplate + " table").clone() );
+		
+		// Hide all other word tables
+		$(".word-conjugations-table").parents("closable-window").addClass("hidden");
+
+		$("#" + tableId).removeClass("hidden");
+
+		var accusativeSingularExists = false;
+
+		var dictForm = null;
+
+		for (var i=0; i<data.length; i++) {
+			var dataRow = data[i];
+			if (dataRow['dec_class'] == "dec_nom_m") {
+				dictForm = mergeStressMarks(dataRow["spelling"], dataRow["stress_pos"]);
+				break;
+			}
+		}
+		
+		table.find(".result-entry.dict-form").html(dictForm);
+			
+		for (var i=0; i<data.length; i++) {
+			var dataRow = data[i];
+			var dataClass = dataRow['dec_class'];
+			var fieldToUse = $("#" + tableId + " ." + dataClass);
+
+			var wordToAdd = mergeStressMarks(dataRow["spelling"], dataRow["stress_pos"]);
+
+			$(fieldToUse).each(function() {
+				var fieldValue = $(this).html();
+
+				if (!fieldValue == "") {
+					fieldValue += ", ";
+				}
+
+				fieldValue += wordToAdd;
+
+				$(this).html(fieldValue);
+			});
+		}
+		
+		table.find(".result-entry").each(function(i) {
+			var text = $(this).text().trim();
+			if (text == "") {
+				$(this).text("-");
+			}
+		});
+			
+		var decOptionsObj = $("#" + tableId).find(".declension-options");
+		doClick(getSelectedButtons(decOptionsObj), false);
+	};
+	
+		
+	var detectAdjectiveButtons = function(button, currentlySelected) {
+	
+		var successful = true;
+		
+		if (currentlySelected) {
+			if (button.hasClass("showAdjMasculineButton") || button.hasClass("showAdjFeminineButton") || button.hasClass("showAdjNeuterButton") || button.hasClass("showAdjPluralButton") || button.hasClass("showAdjSFormsButton")) {
+				var dialog = getDialog(button);
+				dialog.find(".main-table").removeClass("hidden");
+				dialog.find(".main-forms").removeClass("hidden");
+				dialog.find(".m-cell").removeClass("hidden");
+				dialog.find(".f-cell").removeClass("hidden");
+				dialog.find(".n-cell").removeClass("hidden");
+				dialog.find(".p-cell").removeClass("hidden");
+				dialog.find(".short-forms,.other-forms").removeClass("hidden");
+				dialog.find(".short-forms-only").addClass("hidden");
+			}
+			else {
+				successful = false;
+			}
+		}
+		else {
+			if (button.hasClass("showAdjMasculineButton")) {
+				var dialog = getDialog(button);
+				dialog.find(".main-table").removeClass("hidden");
+				dialog.find(".main-forms").removeClass("hidden");
+				dialog.find(".m-cell").removeClass("hidden");
+				dialog.find(".f-cell").addClass("hidden");
+				dialog.find(".n-cell").addClass("hidden");
+				dialog.find(".p-cell").addClass("hidden");
+				dialog.find(".short-forms,.other-forms").addClass("hidden");
+				dialog.find(".short-forms-only").addClass("hidden");
+			}
+			else if (button.hasClass("showAdjFeminineButton")) {
+				var dialog = getDialog(button);
+				dialog.find(".main-table").removeClass("hidden");
+				dialog.find(".main-forms").removeClass("hidden");
+				dialog.find(".m-cell").addClass("hidden");
+				dialog.find(".f-cell").removeClass("hidden");
+				dialog.find(".n-cell").addClass("hidden");
+				dialog.find(".p-cell").addClass("hidden");
+				dialog.find(".short-forms,.other-forms").addClass("hidden");
+				dialog.find(".short-forms-only").addClass("hidden");
+			}
+			else if (button.hasClass("showAdjNeuterButton")) {
+				var dialog = getDialog(button);
+				dialog.find(".main-table").removeClass("hidden");
+				dialog.find(".main-forms").removeClass("hidden");
+				dialog.find(".m-cell").addClass("hidden");
+				dialog.find(".f-cell").addClass("hidden");
+				dialog.find(".n-cell").removeClass("hidden");
+				dialog.find(".p-cell").addClass("hidden");
+				dialog.find(".short-forms,.other-forms").addClass("hidden");
+				dialog.find(".short-forms-only").addClass("hidden");
+			}
+			else if (button.hasClass("showAdjPluralButton")) {
+				var dialog = getDialog(button);
+				dialog.find(".main-table").removeClass("hidden");
+				dialog.find(".main-forms").removeClass("hidden");
+				dialog.find(".m-cell").addClass("hidden");
+				dialog.find(".f-cell").addClass("hidden");
+				dialog.find(".n-cell").addClass("hidden");
+				dialog.find(".p-cell").removeClass("hidden");
+				dialog.find(".short-forms,.other-forms").addClass("hidden");
+				dialog.find(".short-forms-only").addClass("hidden");
+			}
+			else if (button.hasClass("showAdjSFormsButton")) {
+				var dialog = getDialog(button);
+				dialog.find(".main-table").addClass("hidden");
+				dialog.find(".short-forms,.other-forms").removeClass("hidden");
+				dialog.find(".short-forms-only").removeClass("hidden");
+			}
+			else {
+				successful = false;
+			}
+		}
+	
+		return successful;
+	};
+</script>

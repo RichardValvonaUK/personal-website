@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="UTF-8">
+        <title>Richard Valvona | {% block title %}{% endblock %}</title>
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
+	</head>
+	<body>
+	<div id="page">
+		<header>
+			<?php include BASE_DIR_CONTENT . "/views/layout-components/header.php"; ?>
+			<div id="mobile-menu" class="left-menu block-table-cell">
+				<div class="menu-holder">
+					<!-- php if (!$controller->androidMode) include BASE_DIR_CONTENT . "/views/layout-components/menu.php"; -->
+				</div>
+			</div>
+			<div class="title-and-menu menu-closed">
+				<span class="title-and-toggler">
+					<span class="menu-toggler hidden-on-pc" style="color: #008;">
+						&nbsp;&#8801;&nbsp;
+					</span>
+					<span class="page-title">Richard Valvona</span>
+					<span class="social-network-links"><!--
+						--><?php
+						/*
+						echo URLS::absLink(Images::create('autoheight', '1464388115_facebook.png', null, null),
+							'https://www.youtube.com/watch?v=zkahZcyOcV0',
+							null
+						);
+						*/
+						?><!--
+						--><?php echo URLS::absLink(Images::create('', '1464387080_instagram.png', null, null),
+							'https://www.instagram.com/m_r_robin/',
+							null
+						); ?><!--
+						--><?php echo URLS::absLink(Images::create('', '1464387946_twitter_2.png', null, null),
+							'https://twitter.com/RichardValvona',
+							null
+						); ?><!--
+						--><?php echo URLS::absLink(Images::create('', '1464599692-youtube-square-social-media.png', null, null),
+							'https://www.youtube.com/channel/UC_Dnr4KatK04R7TG_xuVG3Q/videos',
+							null
+						); ?><!--
+					--></span>
+					<div id="menu-on-pc" class="left-menu">
+						{% include('components/menu/menu.html.twig') with {'menu': menu, 'currenturl': path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))} only %}
+					</div>
+				</span>
+			</div>
+
+		</header>
+		<div id="middle-section">
+			{% block precontent %}
+			{% endblock %}
+			<div id="main-content" class="bg-light">
+				<section class="content-wrapper">
+					<section class="centered-content">
+						<article>
+							{% block optionalheading %}{% endblock %}
+							{% block content %}{% endblock %}
+						</article>
+					</section>
+				</section>
+			</div>
+		</div>
+	</div>
+	<footer class="bg-light">
+		{{ include("components/footer.html.twig") }}
+	</footer>
+	</body>
+</html>

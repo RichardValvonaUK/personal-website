@@ -1,0 +1,107 @@
+{% extends "/standard-page.html.twig" %}
+
+{% block title %}Word Conjugator{% endblock %}
+
+{% block content %}
+<p>Use this little app if you wish to know how a word is declined. The data used in this database has been extracted from Wiktionary and converted to MySQL so that you can easily find any word you want and see all of its declinations including any lesser well-known ones. It doesn't matter whether you lookup the instrumental form of a noun or the comparative of a verb, all word forms for a word are in the database. Also, it doesn't matter whether you know how a word is spelt. The search algorithm used in this app has been designed for sorting results starting with the closest spelling while keeping a high efficiency.
+<br/><br/>
+You can currently search for nouns, adjectives and verbs but other word types will be added in the near future so stay put. Also, please check out the <?php echo \URLS::localLink('Cardinal Number Conjugator here', '/russian-lab/cardinal-numbers-with-nouns', null); ?> which allows you to see the declinations for any positive integer.
+</p>
+<form>
+	<input id="searchTextOptionRussian" name="searchTextOption" type="radio" value="russian" checked="checked" /><label for="searchTextOptionRussian">Russian</label>
+	<input id="searchTextOptionEnglish" name="searchTextOption" type="radio" value="english" /><label for="searchTextOptionEnglish">English</label>
+	<input id="searchTextRussian" type="search" />
+	<input id="searchTextEnglish" type="search" class="hidden"/>
+	<input id="searchTextHelpButton" type="button" value=" ? " />
+	<input id="searchButton" type="button" value="Search" />
+	<input id="randomButton" type="button" value="Random" />
+
+	<table id="transliteration" class="color-scheme2 bg-light">
+		<tr><td colspan="6" style="word-wrap:break-word;">Transliteration pad. Type in search box or click the letters to enter text.</td></tr>
+		<tr><td class="g1"><span class="key-to-press">а</span></span></td><td class="g1"><b><span class="key-to-press">a</span></b></td><td class="g1"><span class="key-to-press">я</span></td><td class="g1"><b><span class="key-to-press">ya</span></b></td><td class="g2"><span class="key-to-press">ь</span></td><td class="g2"><b><span class="key-to-press">'</span></b></td></tr>
+		<tr><td class="g1"><span class="key-to-press">э</span></td><td class="g1"><b><span class="key-to-press">eh</span></b></td><td class="g1"><span class="key-to-press">е</span></td><td class="g1"><b><span class="key-to-press">e</span></b> or <b><span class="key-to-press">ye</span></b></td><td class="g2"><span class="key-to-press">ъ</span></td><td class="g2"><b><span class="key-to-press">''</span></b> or <b><span class="key-to-press">'h</span></b></td></tr>
+		<tr><td class="g1"><span class="key-to-press">ы</span></td><td class="g1"><b><span class="key-to-press">ih</span></b></td><td class="g1"><span class="key-to-press">и</span></td><td class="g1"><b><span class="key-to-press">i</span></b> or <b><span class="key-to-press">yi</span></b></td><td class="g2"><span class="key-to-press">й</span></td><td class="g2"><b><span class="key-to-press">y</span></b></td></tr>
+		<tr><td class="g1"><span class="key-to-press">о</span></td><td class="g1"><b><span class="key-to-press">o</span></b></td><td class="g1"><span class="key-to-press">ё</span></td><td class="g1"><b><span class="key-to-press">yo</span></b></td><td class="g2"><span class="key-to-press">'</span></td><td class="g2"><b><span class="key-to-press">'hh</span></b> or <b><span class="key-to-press">''h</span></b></td></tr>
+		<tr><td class="g1"><span class="key-to-press">у</span></td><td class="g1"><b><span class="key-to-press">u</span></b> or <b><span class="key-to-press">w</span></b></td><td class="g1"><span class="key-to-press">ю</span></td><td class="g1"><b><span class="key-to-press">yu</span></b></td><td class="g1"><span class="key-to-press">ю́</span></td><td class="g1"><b><span class="key-to-press">yu'</span></b></td></tr>
+		<tr><td class="g3"><span class="key-to-press">б</span></td><td class="g3"><b><span class="key-to-press">b</span></b></td><td class="g3"><span class="key-to-press">п</span></td><td class="g3"><b><span class="key-to-press">p</span></b></td><td class="g4"><span class="key-to-press">ж</span></td><td class="g4"><b><span class="key-to-press">zh</span></b></td></tr>
+		<tr><td class="g3"><span class="key-to-press">в</span></td><td class="g3"><b><span class="key-to-press">v</span></b></td><td class="g3"><span class="key-to-press">ф</span></td><td class="g3"><b><span class="key-to-press">f</span></b></td><td class="g4"><span class="key-to-press">жж</span></td><td class="g4"><b><span class="key-to-press">zhh</span></b></td></tr>
+		<tr><td class="g3"><span class="key-to-press">д</span></td><td class="g3"><b><span class="key-to-press">d</span></b></td><td class="g3"><span class="key-to-press">т</span></td><td class="g3"><b><span class="key-to-press">t</span></b></td><td class="g4"><span class="key-to-press">ш</span></td><td class="g4"><b><span class="key-to-press">sh</span></b></td></tr>
+		<tr><td class="g3"><span class="key-to-press">г</span></td><td class="g3"><b><span class="key-to-press">g</span></b></td><td class="g3"><span class="key-to-press">к</span></td><td class="g3"><b><span class="key-to-press">k</span></b> оr <b><span class="key-to-press">q</span></b></td><td class="g4"><span class="key-to-press">щ</span></td><td class="g4"><b><span class="key-to-press">shh</span></b></td></tr>
+		<tr><td class="g3"><span class="key-to-press">з</span></td><td class="g3"><b><span class="key-to-press">z</span></b></td><td class="g3"><span class="key-to-press">с</span></td><td class="g3"><b><span class="key-to-press">s</span></b></td><td class="g4"><span class="key-to-press">ч</span></td><td class="g4"><b><span class="key-to-press">ch</span></b></td></tr>
+		<tr><td class="g3"><span class="key-to-press">л</span></td><td class="g3"><b><span class="key-to-press">l</span></b></td><td class="g3"><span class="key-to-press">р</span></td><td class="g3"><b><span class="key-to-press">r</span></b></td><td class="g4"><span class="key-to-press">чш</span></td><td class="g4"><b><span class="key-to-press">chh</span></b></td></tr>
+		<tr><td class="g3"><span class="key-to-press">м</span></td><td class="g3"><b><span class="key-to-press">m</span></b></td><td class="g3"><span class="key-to-press">х</span></td><td class="g3"><b><span class="key-to-press">x</span></b> or <b><span class="key-to-press">kh</span></b></td><td class="g4"><span class="key-to-press">дж</span></td><td class="g4"><b><span class="key-to-press">j</span></b> or <b><span class="key-to-press">dzh</span></b></td></tr>
+		<tr><td class="g3"><span class="key-to-press">н</span></td><td class="g3"><b><span class="key-to-press">n</span></b></td><td class="g4"><span class="key-to-press">тс</span></td><td class="g4"><b><span class="key-to-press">t.s</span></b></td><td class="g4"><span class="key-to-press">ц</span></td><td class="g4"><b><span class="key-to-press">ts</span></b> or <b><span class="key-to-press">c</span></b></td></tr>
+	</table>
+
+	<br/><br/>
+	<table id="resultsListTemplate" class="language-table color-scheme2 bg-light hidden" border="0" cellpadding="0">
+		<tbody>
+			<tr class="result-entry selectable"><td class="word"></td><td class="desc"></td>
+		</tbody>
+	</table>
+	<div id="resultsListHolder" class="bg-light">
+		<table id="resultsList" class="language-table color-scheme2 bg-light" border="0" cellpadding="0">
+			<colgroup>
+			</colgroup>
+			<tbody>
+				<tr><td colspan="2" class="title">Enter text in the box above to search for a word</td></tr>
+			</tbody>
+		</table>
+	</div>
+	<span class="bg-light">
+		<?php require('nouns-table.html'); ?>
+		<?php require('adjectives-table.html'); ?>
+		<?php require('verbs-table.html'); ?>
+	</span>
+	<br/>
+</form>
+<script type="text/javascript">
+	<?php require('word-conjugator-maps-and-arrays.js'); ?>
+	<?php require('word-conjugator-functions.js'); ?>
+	<?php require('word-conjugator-search-text-russian-operations.js'); ?>
+
+
+
+	$("body").addClass("no-refresh-scroll");
+
+
+	$( "#transliteration" ).mousedown(function(e){
+		//e.preventDefault();
+	});
+
+	$( "#transliteration .key-to-press" ).click(function(e){
+		insertText($("#searchTextRussian"), $(this).text());
+	});
+
+	$( "#variantsCheckBox" ).change(function() {
+		doSearch();
+	});
+
+	$("#searchButton").click(function(){
+
+
+		/*
+		$.ajax({url: "demo_test.txt", success: function(result){
+			$("#div1").html(result);
+		}});
+		*/
+	});
+
+	$("#randomButton").on('click', function(e) {
+		setSearchWordFromId("random");
+	});
+
+	$(document).ready(function() {
+		enableButtons("#nounTable");
+		enableButtons("#adjectiveTable");
+		enableButtons("#verbTable");
+	});
+
+	$(document).keyup(function(e) {
+		if (e.keyCode === 27) {
+			$('.closable-window').addClass("hidden");
+		}
+	});
+
+</script>
+{% endblock %}

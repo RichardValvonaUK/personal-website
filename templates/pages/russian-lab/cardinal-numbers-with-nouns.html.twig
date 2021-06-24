@@ -1,0 +1,861 @@
+{% extends "/standard-page.html.twig" %}
+
+{% block title %}Cardinal Number and Noun Conjugator{% endblock %}
+
+{% block content %}
+
+<p>In English, the rules for plurals of nouns after numbers are easy. If there's only one of them, you use the singular. Otherwise, you use the plural. In Russian, it's far more complicated. <a href="#rulesExplanationTableHeading">The rules for declining Russian numerals are explained here</a> following a number and noun conjugator which allows you to see any non-negative Russian numeral between 1 and 99 digits written in words and declined in all 6 cases with an optional noun to follow it.
+</p>
+
+
+<h3>Enter any number to decline and select a noun from the dropdown list...</h3>
+<p>
+You can type in any non-negative whole number as digits and select an optional noun from the dropdown box to see how that noun declines with each numerical case. As far as I'm aware, and from extensive research, the numbers decline correctly. If you're a native-Russian speaker and see a mistake, please feel free to <a href="mailto:richard@richardvalvona.uk" target="_blank">let me know</a>.
+
+
+</p>
+
+<form>
+	<span class="input-group">Number <input id="numberInput" type="number" min="0" step="1" value="" maxlength="99" /><span id="numberCategoryDesc"></span></span>
+	<br/>
+	<br/>
+	<span class="input-group">Select noun<select id="nounSelection"></select></span>
+	<br/>
+	<br/>
+	<span id="nounDetails">
+		<span class="nounLiteral" class=""></span>
+		<span class="nounGenderM" class="noun-gender hidden">masculine</span>
+		<span class="nounGenderF" class="noun-gender hidden">feminine</span>
+		<span class="nounGenderN" class="noun-gender hidden">neuter</span>
+		<span class="nounAnimateYes" class="noun-animate hidden">animate</span>
+		<span class="nounAnimateNo" class="noun-animate hidden">inanimate</span>
+		<span class="nounAnimateNoInd" class="noun-animate hidden">inanimate, indeclinable</span>
+	</span>
+	<br/>
+	<div class="table-holder">
+		<table id="autoDeclensionTable" class="language-table color-scheme2 background-white bg-light" border="0" cellspacing="1px" cellpadding="0">
+			<colgroup>
+			</colgroup>
+			<thead>
+				<tr><th>Case</th><th class="singular hidden">Singular</th><th class="plural hidden">Plural</th><th class="with-number">Declination</th></tr>
+			</thead>
+			<tbody>
+				<tr><td>Nom</td><td class="nom-case singular hidden"></td><td class="nom-case plural hidden"></td><td class="nom-case with-number"></td></tr>
+				<tr><td>Acc</td><td class="acc-case singular hidden"></td><td class="acc-case plural hidden"></td><td class="acc-case with-number"></td></tr>
+				<tr><td>Gen</td><td class="gen-case singular hidden"></td><td class="gen-case plural hidden"></td><td class="gen-case with-number"></td></tr>
+				<tr><td>Dat</td><td class="dat-case singular hidden"></td><td class="dat-case plural hidden"></td><td class="dat-case with-number"></td></tr>
+				<tr><td>Ins</td><td class="ins-case singular hidden"></td><td class="ins-case plural hidden"></td><td class="ins-case with-number"></td></tr>
+				<tr><td>Pre</td><td class="pre-case singular hidden"></td><td class="pre-case plural hidden"></td><td class="pre-case with-number"></td></tr>
+			</tbody>
+			<!--
+			<tbody class="hidden-on-pc">
+				<tr><td class="case-heading">Nominative</td></tr>
+				<tr><td class="nom-case singular hidden"></td><td class="nom-case plural hidden"></td><td class="nom-case with-number"></td></tr>
+				<tr><td class="case-heading">Accusative</td></tr>
+				<tr><td class="acc-case singular hidden"></td><td class="acc-case plural hidden"></td><td class="acc-case with-number"></td></tr>
+				<tr><td class="case-heading">Genitive</td></tr>
+				<tr><td class="gen-case singular hidden"></td><td class="gen-case plural hidden"></td><td class="gen-case with-number"></td></tr>
+				<tr><td class="case-heading">Dative</td></tr>
+				<tr><td class="dat-case singular hidden"></td><td class="dat-case plural hidden"></td><td class="dat-case with-number"></td></tr>
+				<tr><td class="case-heading">Instrumental</td></tr>
+				<tr><td class="ins-case singular hidden"></td><td class="ins-case plural hidden"></td><td class="ins-case with-number"></td></tr>
+				<tr><td class="case-heading">Prepositional</td></tr>
+				<tr><td class="pre-case singular hidden"></td><td class="pre-case plural hidden"></td><td class="pre-case with-number"></td></tr>
+			</tbody>
+			-->
+		</table>
+	</div>
+</form>
+<!-- vocative  Partitive Locative -->
+
+<br/><br/>
+<h3 id="rulesExplanationTableHeading">Rules for declining Russian nouns with numbers</h3>
+
+<form>
+	<div class="table-holder">
+		<table id="rulesExplanationTable" class="language-table color-scheme3 bg-light" border="0" cellspacing="1px" cellpadding="0">
+			<tbody>
+				<tr><td>Number ends with *</td><td>Declination rule for nouns</td></tr>
+				<tr><td>000 (or is нуль, 0)</td><td>Genitive plural for all cases</td></tr>
+				<tr><td>1 - один</td><td>The noun is always singular and in its regular case with the case and gender of один matching that of the noun. If the accusative of a noun is the same as its nominative or genitive, then the case of один follows suit.</td></tr>
+				<tr><td>2 - два (m/n)<br/>2 - две (f)<br/>3 - три<br/>4 - четыре</td><td>Genitive singular for the nominative and accusative cases<br/>Same case as the number and plural for the other cases</td></tr>
+				<tr><td>5-900</td><td>Genitive plural for the nominative and accusative cases<br/>Same case as the number and plural for the other cases</td></tr>
+			</tbody>
+		</table>
+	</div>
+</form>
+<br/>
+<p>* For any number ending in 001 - 999, the ending of a number means the final word of a number rather than the final digit. The final word of 652 is два while for 612, it's двенатцать.</p>
+
+<h3 id="rulesExplanationTableHeading">Declining numbers with more than 3 digits</h3>
+<p>
+All numbers are declined in blocks of 3 digits (the first block up to 3 digits) independently from one another with each big number (тысяча, миллион, etc) declining after the digits in its block in exactly the same way as any other noun (since they are also nouns). Blocks of '000' are ignored while blocks of '001' (except the right-most block) include the big number but omit один.
+</p>
+<p>
+This means that 4235001542, for example, is broken down like this:
+</p>
+<form>
+	<div class="table-holder">
+		<table class="language-table color-scheme2 background-white bg-light" border="0" cellspacing="1px" cellpadding="0">
+			<colgroup>
+			</colgroup>
+			<tbody>
+				<tr><th>Case</th><th>миллиа́рд</th><th>миллио́н</th><th>ты́сяча</th><th>же́нщина</th></tr>
+				<tr><td>Nom</td><td>4 <b>миллиа́рда</b></td><td>235 <b>миллио́нов</b></td><td>001 <b>ты́сяча</b></td><td>542 же́нщины</td></tr>
+				<tr><td>Acc</td><td>4 <b>миллиа́рда</b></td><td>235 <b>миллио́нов</b></td><td>001 <b>ты́сячу</b></td><td>542 же́нщин</td></tr>
+				<tr><td>Gen</td><td>4 <b>миллиа́рдов</b></td><td>235 <b>миллио́нов</b></td><td>001 <b>ты́сячи</b></td><td>542 же́нщин</td></tr>
+				<tr><td>Dat</td><td>4 <b>миллиа́рдам</b></td><td>235 <b>миллио́нам</b></td><td>001 <b>ты́сяче</b></td><td>542 же́нщинам</td></tr>
+				<tr><td>Ins</td><td>4 <b>миллиа́рдами</b></td><td>235 <b>миллио́нами</b></td><td>001 <b>ты́сячей</b></td><td>542 же́нщинами</td></tr>
+				<tr><td>Pre</td><td>4 <b>миллиа́рдах</b></td><td>235 <b>миллио́нах</b></td><td>001 <b>ты́сяче</b></td><td>542 же́нщинах</td></tr>
+			</tbody>
+		</table>
+	</div>
+</form>
+<br/>
+<p>
+After each group is declined, you simply join each group together to get.<br/>
+</p>
+<form>
+	<div class="table-holder">
+		<table class="language-table color-scheme2 background-white bg-light" border="0" cellspacing="1px" cellpadding="0">
+			<colgroup>
+			</colgroup>
+			<tbody>
+				<tr><th>Case</th><th>Declination</th></tr>
+				<tr><td>Nom</td><td>четы́ре <b>миллиа́рда</b> две́сти три́дцать пять <b>миллио́нов</b> <b>ты́сяча</b> пятьсо́т со́рок две <b>же́нщины</b></td></tr>
+				<tr><td>Acc</td><td>четы́ре <b>миллиа́рда</b> две́сти три́дцать пять <b>миллио́нов</b> <b>ты́сячу</b> пятисо́т со́рок двух <b>же́нщин</b></td></tr>
+				<tr><td>Gen</td><td>четырёх <b>миллиа́рдов</b> двухсо́т тридцати́ пяти́ <b>миллио́нов</b> <b>ты́сячи</b> пятисо́т сорока́ двух <b>же́нщин</b></td></tr>
+				<tr><td>Dat</td><td>четырём <b>миллиа́рдам</b> двумста́м тридцати́ пяти́ <b>миллио́нам</b> <b>ты́сяче</b> пятиста́м сорока́ двум <b>же́нщинам</b></td></tr>
+				<tr><td>Ins</td><td>четырьмя́ <b>миллиа́рдами</b> двумяста́ми тридцатью́ пятью́ <b>миллио́нами</b> <b>ты́сячей</b> пятьюста́ми сорока́ двумя́ <b>же́нщинами</b></td></tr>
+				<tr><td>Pre</td><td>четырёх <b>миллиа́рдах</b> двухста́х тридцати́ пяти́ <b>миллио́нах</b> <b>ты́сяче</b> пятиста́х сорока́ двух <b>же́нщинах</b></td></tr>
+			</tbody>
+		</table>
+	</div>
+</form>
+<br/>
+<p>
+Obviously, the numbers have been tidied up into the correct format. For each chunk with a big number, if there's only one of them, you use that big number without any number in front of it. If there are none, then that group is not written at all. For the noun at the end, you always write it regardless of the whole number and always write the number chunk except for ноль. ноль is only ever written when there are exactly zero of that noun.
+</p>
+<h3 id="rulesExplanationTableHeading">Conclusion</h3>
+<p>The rules above have been simplified to make it easier to understand. I feel it's best to learn some known rules combined with seeing practical examples which display the results. Being able to see what you think is right is reassurance that you interpreted the rules correctly and therefore confidence boosting.
+</p>
+
+<script type="text/javascript">
+	var smallNumbers = {
+		'0mfn': { 'nom':'ноль','acc-in':'ноль','acc-an':'ноль','gen':'нуля́','dat':'нулю́','ins':'нулём','pre':'нуле́','literal':'0', }, 	'1m': { 'nom':'оди́н','acc-in':'оди́н','acc-an':'одного́','gen':'одного́','dat':'одному́','ins':'одни́м','pre':'одно́м','literal':'1', }, 	'1f': { 'nom':'одна́','acc-in':'одну́','acc-an':'одну́','gen':'одной','dat':'одно́й','ins':'одно́й','pre':'одно́й','literal':'1', }, 	'1n': { 'nom':'одно́','acc-in':'одно́','acc-an':'одно́','gen':'одного́','dat':'одному́','ins':'одни́м','pre':'одно́м','literal':'1', }, 	'2mn': { 'nom':'два','acc-in':'два','acc-an':'двух','gen':'двух','dat':'двум','ins':'двумя́','pre':'двух','literal':'2', }, 	'2f': { 'nom':'две','acc-in':'две','acc-an':'двух','gen':'двух','dat':'двум','ins':'двумя́','pre':'двух','literal':'2', }, 	'3mfn': { 'nom':'три','acc-in':'три','acc-an':'трёх','gen':'трёх','dat':'трём','ins':'тремя́','pre':'трёх','literal':'3', }, 	'4mfn': { 'nom':'четы́ре','acc-in':'четы́ре','acc-an':'четырёх','gen':'четырёх','dat':'четырём','ins':'четырьмя́','pre':'четырёх','literal':'4', }, 	'5mfn': { 'nom':'пять','acc-in':'пять','acc-an':'пяти́','gen':'пяти́','dat':'пяти́','ins':'пятью́','pre':'пяти́','literal':'5', }, 	'6mfn': { 'nom':'шесть','acc-in':'шесть','acc-an':'шести́','gen':'шести́','dat':'шести́','ins':'шестью́','pre':'шести́','literal':'6', }, 	'7mfn': { 'nom':'семь','acc-in':'семь','acc-an':'семи́','gen':'семи́','dat':'семи́','ins':'семью́','pre':'семи́','literal':'7', }, 	'8mfn': { 'nom':'во́семь','acc-in':'во́семь','acc-an':'восьми́','gen':'восьми́','dat':'восьми́','ins':'восемью́','pre':'восьми́','literal':'8', }, 	'9mfn': { 'nom':'де́вять','acc-in':'де́вять','acc-an':'девяти́','gen':'девяти́','dat':'девяти́','ins':'девятью́','pre':'девяти́','literal':'9', }, 	'10mfn': { 'nom':'де́сять','acc-in':'де́сять','acc-an':'десяти́','gen':'десяти́','dat':'десяти́','ins':'десятью́','pre':'десяти́','literal':'10', }, 	'11mfn': { 'nom':'оди́ннадцать','acc-in':'оди́ннадцать','acc-an':'оди́ннадцати','gen':'оди́ннадцати','dat':'оди́ннадцати','ins':'оди́ннадцатью','pre':'оди́ннадцати','literal':'11', }, 	'12mfn': { 'nom':'двена́дцать','acc-in':'двена́дцать','acc-an':'двена́дцати','gen':'двена́дцати','dat':'двена́дцати','ins':'двена́дцатью','pre':'двена́дцати','literal':'12', }, 	'13mfn': { 'nom':'трина́дцать','acc-in':'трина́дцать','acc-an':'трина́дцати','gen':'трина́дцати','dat':'трина́дцати','ins':'трина́дцатью','pre':'трина́дцати','literal':'13', }, 	'14mfn': { 'nom':'четы́рнадцать','acc-in':'четы́рнадцать','acc-an':'четы́рнадцати','gen':'четы́рнадцати','dat':'четы́рнадцати','ins':'четы́рнадцатью','pre':'четы́рнадцати','literal':'14', }, 	'15mfn': { 'nom':'пятна́дцать','acc-in':'пятна́дцать','acc-an':'пятна́дцати','gen':'пятна́дцати','dat':'пятна́дцати','ins':'пятна́дцатью','pre':'пятна́дцати','literal':'15', }, 	'16mfn': { 'nom':'шестна́дцать','acc-in':'шестна́дцать','acc-an':'шестна́дцати','gen':'шестна́дцати','dat':'шестна́дцати','ins':'шестна́дцатью','pre':'шестна́дцати','literal':'16', }, 	'17mfn': { 'nom':'семна́дцать','acc-in':'семна́дцать','acc-an':'семна́дцати','gen':'семна́дцати','dat':'семна́дцати','ins':'семна́дцатью','pre':'семна́дцати','literal':'17', }, 	'18mfn': { 'nom':'восемна́дцать','acc-in':'восемна́дцать','acc-an':'восемна́дцати','gen':'восемна́дцати','dat':'восемна́дцати','ins':'восемна́дцатью','pre':'восемна́дцати','literal':'18', }, 	'19mfn': { 'nom':'девятна́дцать','acc-in':'девятна́дцать','acc-an':'девятна́дцати','gen':'девятна́дцати','dat':'девятна́дцати','ins':'девятна́дцатью','pre':'девятна́дцати','literal':'19', }, 	'20mfn': { 'nom':'два́дцать','acc-in':'два́дцать','acc-an':'двадцати́','gen':'двадцати́','dat':'двадцати́','ins':'двадцатью́','pre':'двадцати́','literal':'20', }, 	'30mfn': { 'nom':'три́дцать','acc-in':'три́дцать','acc-an':'тридцати́','gen':'тридцати́','dat':'тридцати́','ins':'тридцатью́','pre':'тридцати́','literal':'30', }, 	'40mfn': { 'nom':'со́рок','acc-in':'со́рок','acc-an':'сорока́','gen':'сорока́','dat':'сорока́','ins':'сорока́','pre':'сорока́','literal':'40', }, 	'50mfn': { 'nom':'пятьдеся́т','acc-in':'пятьдеся́т','acc-an':'пяти́десяти','gen':'пяти́десяти','dat':'пяти́десяти','ins':'пятью́десятью','pre':'пяти́десяти','literal':'50', }, 	'60mfn': { 'nom':'шестьдеся́т','acc-in':'шестьдеся́т','acc-an':'шести́десяти','gen':'шести́десяти','dat':'шести́десяти','ins':'шестью́десятью','pre':'шести́десяти','literal':'60', }, 	'70mfn': { 'nom':'се́мьдесят','acc-in':'се́мьдесят','acc-an':'семи́десяти','gen':'семи́десяти','dat':'семи́десяти','ins':'семью́десятью','pre':'семи́десяти','literal':'70', }, 	'80mfn': { 'nom':'во́семьдесят','acc-in':'во́семьдесят','acc-an':'восьми́десяти','gen':'восьми́десяти','dat':'восьми́десяти','ins':'восемью́десятью','pre':'восьми́десяти','literal':'80', }, 	'90mfn': { 'nom':'девяно́сто','acc-in':'девяно́сто','acc-an':'девяно́ста','gen':'девяно́ста','dat':'девяно́ста','ins':'девяно́ста','pre':'девяно́ста','literal':'90', }, 	'100mfn': { 'nom':'сто','acc-in':'сто','acc-an':'ста','gen':'ста','dat':'ста','ins':'ста','pre':'ста','literal':'100', }, 	'200mfn': { 'nom':'две́сти','acc-in':'две́сти','acc-an':'двухсо́т','gen':'двухсо́т','dat':'двумста́м','ins':'двумяста́ми','pre':'двухста́х','literal':'200', }, 	'300mfn': { 'nom':'три́ста','acc-in':'три́ста','acc-an':'трёхсо́т','gen':'трёхсо́т','dat':'трёмста́м','ins':'тремяста́ми','pre':'трёхста́х','literal':'300', }, 	'400mfn': { 'nom':'четы́реста','acc-in':'четы́реста','acc-an':'четырёхсо́т','gen':'четырёхсо́т','dat':'четырёмста́м','ins':'четырьмя́ста́ми','pre':'четырёхста́х','literal':'400', }, 	'500mfn': { 'nom':'пятьсо́т','acc-in':'пятьсо́т','acc-an':'пятисо́т','gen':'пятисо́т','dat':'пятиста́м','ins':'пятьюста́ми','pre':'пятиста́х','literal':'500', }, 	'600mfn': { 'nom':'шестьсо́т','acc-in':'шестьсо́т','acc-an':'шести́со́т','gen':'шести́со́т','dat':'шести́ста́м','ins':'шестью́ста́ми','pre':'шести́ста́х','literal':'600', }, 	'700mfn': { 'nom':'семьсо́т','acc-in':'семьсо́т','acc-an':'семи́со́т','gen':'семи́со́т','dat':'семи́ста́м','ins':'семью́ста́ми','pre':'семи́ста́х','literal':'700', }, 	'800mfn': { 'nom':'восемьсо́т','acc-in':'восемьсо́т','acc-an':'восьми́со́т','gen':'восьми́со́т','dat':'восьми́ста́м','ins':'восемью́ста́ми','pre':'восьми́ста́х','literal':'800', }, 	'900mfn': { 'nom':'девятьсо́т','acc-in':'девятьсо́т','acc-an':'девяти́со́т','gen':'девяти́со́т','dat':'девяти́ста́м','ins':'девятью́ста́ми','pre':'девяти́ста́х','literal':'900', },
+	};
+	
+var smallNumbersOrdinalWords = {
+1	: {	'nom-m':'пе́рвый'	,'gen-m':'пе́рвого'	,'dat-m':'пе́рвому'	,'ins-m':'пе́рвым'	,'pre-m':'пе́рвом'	,'nom-f':'пе́рвая'	,'acc-f':'пе́рвую'	,'gen-f':'пе́рвой'	,'int-alt-f':'пе́рвою'	,'nom-n':'пе́рвое'	,'nom-p':'пе́рвые'	,'gen-p':'пе́рвых'	,'dat-p':'пе́рвым'	,'ins-p':'пе́рвыми'		},
+2	: {	'nom-m':'второ́й'	,'gen-m':'второ́го'	,'dat-m':'второ́му'	,'ins-m':'вторы́м'	,'pre-m':'второ́м'	,'nom-f':'втора́я'	,'acc-f':'втору́ю'	,'gen-f':'второ́й'	,'int-alt-f':'второ́ю'	,'nom-n':'второ́е'	,'nom-p':'вторы́е'	,'gen-p':'вторы́х'	,'dat-p':'вторы́м'	,'ins-p':'вторы́ми'		},
+3	: {	'nom-m':'тре́тий'	,'gen-m':'тре́тьего'	,'dat-m':'тре́тьему'	,'ins-m':'тре́тьим'	,'pre-m':'тре́тьем'	,'nom-f':'тре́тья'	,'acc-f':'тре́тью'	,'gen-f':'тре́тьей'	,'int-alt-f':'тре́тьею'	,'nom-n':'тре́тье'	,'nom-p':'тре́тьи'	,'gen-p':'тре́тьих'	,'dat-p':'тре́тьим'	,'ins-p':'тре́тьими'		},
+4	: {	'nom-m':'четвёртый'	,'gen-m':'четвёртого'	,'dat-m':'четвёртому'	,'ins-m':'четвёртым'	,'pre-m':'четвёртом'	,'nom-f':'четвёртая'	,'acc-f':'четвёртую'	,'gen-f':'четвёртой'	,'int-alt-f':'четвёртою'	,'nom-n':'четвёртое'	,'nom-p':'четвёртые'	,'gen-p':'четвёртых'	,'dat-p':'четвёртым'	,'ins-p':'четвёртыми'		},
+5	: {	'nom-m':'пя́тый'	,'gen-m':'пя́того'	,'dat-m':'пя́тому'	,'ins-m':'пя́тым'	,'pre-m':'пя́том'	,'nom-f':'пя́тая'	,'acc-f':'пя́тую'	,'gen-f':'пя́той'	,'int-alt-f':'пя́тою'	,'nom-n':'пя́тое'	,'nom-p':'пя́тые'	,'gen-p':'пя́тых'	,'dat-p':'пя́тым'	,'ins-p':'пя́тыми'		},
+6	: {	'nom-m':'шесто́й'	,'gen-m':'шесто́го'	,'dat-m':'шесто́му'	,'ins-m':'шесты́м'	,'pre-m':'шесто́м'	,'nom-f':'шеста́я'	,'acc-f':'шесту́ю'	,'gen-f':'шесто́й'	,'int-alt-f':'шесто́ю'	,'nom-n':'шесто́е'	,'nom-p':'шесты́е'	,'gen-p':'шесты́х'	,'dat-p':'шесты́м'	,'ins-p':'шесты́ми'		},
+7	: {	'nom-m':'седьмо́й'	,'gen-m':'седьмо́го'	,'dat-m':'седьмо́му'	,'ins-m':'седьмы́м'	,'pre-m':'седьмо́м'	,'nom-f':'седьма́я'	,'acc-f':'седьму́ю'	,'gen-f':'седьмо́й'	,'int-alt-f':'седьмо́ю'	,'nom-n':'седьмо́е'	,'nom-p':'седьмы́е'	,'gen-p':'седьмы́х'	,'dat-p':'седьмы́м'	,'ins-p':'седьмы́ми'		},
+8	: {	'nom-m':'восьмо́й'	,'gen-m':'восьмо́го'	,'dat-m':'восьмо́му'	,'ins-m':'восьмы́м'	,'pre-m':'восьмо́м'	,'nom-f':'восьма́я'	,'acc-f':'восьму́ю'	,'gen-f':'восьмо́й'	,'int-alt-f':'восьмо́ю'	,'nom-n':'восьмо́е'	,'nom-p':'восьмы́е'	,'gen-p':'восьмы́х'	,'dat-p':'восьмы́м'	,'ins-p':'восьмы́ми'		},
+9	: {	'nom-m':'девя́тый'	,'gen-m':'девя́того'	,'dat-m':'девя́тому'	,'ins-m':'девя́тым'	,'pre-m':'девя́том'	,'nom-f':'девя́тая'	,'acc-f':'девя́тую'	,'gen-f':'девя́той'	,'int-alt-f':'девя́тою'	,'nom-n':'девя́тое'	,'nom-p':'девя́тые'	,'gen-p':'девя́тых'	,'dat-p':'девя́тым'	,'ins-p':'девя́тыми'		},
+10	: {	'nom-m':'деся́тый'	,'gen-m':'деся́того'	,'dat-m':'деся́тому'	,'ins-m':'деся́тым'	,'pre-m':'деся́том'	,'nom-f':'деся́тая'	,'acc-f':'деся́тую'	,'gen-f':'деся́той'	,'int-alt-f':'деся́тою'	,'nom-n':'деся́тое'	,'nom-p':'деся́тые'	,'gen-p':'деся́тых'	,'dat-p':'деся́тым'	,'ins-p':'деся́тыми'		},
+11	: {	'nom-m':'оди́ннадцатый'	,'gen-m':'оди́ннадцатого'	,'dat-m':'оди́ннадцатому'	,'ins-m':'оди́ннадцатым'	,'pre-m':'оди́ннадцатом'	,'nom-f':'оди́ннадцатая'	,'acc-f':'оди́ннадцатую'	,'gen-f':'оди́ннадцатой'	,'int-alt-f':'оди́ннадцатою'	,'nom-n':'оди́ннадцатое'	,'nom-p':'оди́ннадцатые'	,'gen-p':'оди́ннадцатых'	,'dat-p':'оди́ннадцатым'	,'ins-p':'оди́ннадцатыми'		},
+12	: {	'nom-m':'двена́дцатый'	,'gen-m':'двена́дцатого'	,'dat-m':'двена́дцатому'	,'ins-m':'двена́дцатым'	,'pre-m':'двена́дцатом'	,'nom-f':'двена́дцатая'	,'acc-f':'двена́дцатую'	,'gen-f':'двена́дцатой'	,'int-alt-f':'двена́дцатою'	,'nom-n':'двена́дцатое'	,'nom-p':'двена́дцатые'	,'gen-p':'двена́дцатых'	,'dat-p':'двена́дцатым'	,'ins-p':'двена́дцатыми'		},
+13	: {	'nom-m':'трина́дцатый'	,'gen-m':'трина́дцатого'	,'dat-m':'трина́дцатому'	,'ins-m':'трина́дцатым'	,'pre-m':'трина́дцатом'	,'nom-f':'трина́дцатая'	,'acc-f':'трина́дцатую'	,'gen-f':'трина́дцатой'	,'int-alt-f':'трина́дцатою'	,'nom-n':'трина́дцатое'	,'nom-p':'трина́дцатые'	,'gen-p':'трина́дцатых'	,'dat-p':'трина́дцатым'	,'ins-p':'трина́дцатыми'		},
+14	: {	'nom-m':'четы́рнадцатый'	,'gen-m':'четы́рнадцатого'	,'dat-m':'четы́рнадцатому'	,'ins-m':'четы́рнадцатым'	,'pre-m':'четы́рнадцатом'	,'nom-f':'четы́рнадцатая'	,'acc-f':'четы́рнадцатую'	,'gen-f':'четы́рнадцатой'	,'int-alt-f':'четы́рнадцатою'	,'nom-n':'четы́рнадцатое'	,'nom-p':'четы́рнадцатые'	,'gen-p':'четы́рнадцатых'	,'dat-p':'четы́рнадцатым'	,'ins-p':'четы́рнадцатыми'		},
+15	: {	'nom-m':'пятна́дцатый'	,'gen-m':'пятна́дцатого'	,'dat-m':'пятна́дцатому'	,'ins-m':'пятна́дцатым'	,'pre-m':'пятна́дцатом'	,'nom-f':'пятна́дцатая'	,'acc-f':'пятна́дцатую'	,'gen-f':'пятна́дцатой'	,'int-alt-f':'пятна́дцатою'	,'nom-n':'пятна́дцатое'	,'nom-p':'пятна́дцатые'	,'gen-p':'пятна́дцатых'	,'dat-p':'пятна́дцатым'	,'ins-p':'пятна́дцатыми'		},
+16	: {	'nom-m':'шестна́дцатый'	,'gen-m':'шестна́дцатого'	,'dat-m':'шестна́дцатому'	,'ins-m':'шестна́дцатым'	,'pre-m':'шестна́дцатом'	,'nom-f':'шестна́дцатая'	,'acc-f':'шестна́дцатую'	,'gen-f':'шестна́дцатой'	,'int-alt-f':'шестна́дцатою'	,'nom-n':'шестна́дцатое'	,'nom-p':'шестна́дцатые'	,'gen-p':'шестна́дцатых'	,'dat-p':'шестна́дцатым'	,'ins-p':'шестна́дцатыми'		},
+17	: {	'nom-m':'семна́дцатый'	,'gen-m':'семна́дцатого'	,'dat-m':'семна́дцатому'	,'ins-m':'семна́дцатым'	,'pre-m':'семна́дцатом'	,'nom-f':'семна́дцатая'	,'acc-f':'семна́дцатую'	,'gen-f':'семна́дцатой'	,'int-alt-f':'семна́дцатою'	,'nom-n':'семна́дцатое'	,'nom-p':'семна́дцатые'	,'gen-p':'семна́дцатых'	,'dat-p':'семна́дцатым'	,'ins-p':'семна́дцатыми'		},
+18	: {	'nom-m':'восемна́дцатый'	,'gen-m':'восемна́дцатого'	,'dat-m':'восемна́дцатому'	,'ins-m':'восемна́дцатым'	,'pre-m':'восемна́дцатом'	,'nom-f':'восемна́дцатая'	,'acc-f':'восемна́дцатую'	,'gen-f':'восемна́дцатой'	,'int-alt-f':'восемна́дцатою'	,'nom-n':'восемна́дцатое'	,'nom-p':'восемна́дцатые'	,'gen-p':'восемна́дцатых'	,'dat-p':'восемна́дцатым'	,'ins-p':'восемна́дцатыми'		},
+19	: {	'nom-m':'девятна́дцатый'	,'gen-m':'девятна́дцатого'	,'dat-m':'девятна́дцатому'	,'ins-m':'девятна́дцатым'	,'pre-m':'девятна́дцатом'	,'nom-f':'девятна́дцатая'	,'acc-f':'девятна́дцатую'	,'gen-f':'девятна́дцатой'	,'int-alt-f':'девятна́дцатою'	,'nom-n':'девятна́дцатое'	,'nom-p':'девятна́дцатые'	,'gen-p':'девятна́дцатых'	,'dat-p':'девятна́дцатым'	,'ins-p':'девятна́дцатыми'		},
+20	: {	'nom-m':'двадца́тый'	,'gen-m':'двадца́того'	,'dat-m':'двадца́тому'	,'ins-m':'двадца́тым'	,'pre-m':'двадца́том'	,'nom-f':'двадца́тая'	,'acc-f':'двадца́тую'	,'gen-f':'двадца́той'	,'int-alt-f':'двадца́тою'	,'nom-n':'двадца́тое'	,'nom-p':'двадца́тые'	,'gen-p':'двадца́тых'	,'dat-p':'двадца́тым'	,'ins-p':'двадца́тыми'		},
+30	: {	'nom-m':'тридца́тый'	,'gen-m':'тридца́того'	,'dat-m':'тридца́тому'	,'ins-m':'тридца́тым'	,'pre-m':'тридца́том'	,'nom-f':'тридца́тая'	,'acc-f':'тридца́тую'	,'gen-f':'тридца́той'	,'int-alt-f':'тридца́тою'	,'nom-n':'тридца́тое'	,'nom-p':'тридца́тые'	,'gen-p':'тридца́тых'	,'dat-p':'тридца́тым'	,'ins-p':'тридца́тыми'		},
+40	: {	'nom-m':'сороково́й'	,'gen-m':'сороково́го'	,'dat-m':'сороково́му'	,'ins-m':'сороковы́м'	,'pre-m':'сороково́м'	,'nom-f':'сорокова́я'	,'acc-f':'сорокову́ю'	,'gen-f':'сороково́й'	,'int-alt-f':'сороково́ю'	,'nom-n':'сороково́е'	,'nom-p':'сороковы́е'	,'gen-p':'сороковы́х'	,'dat-p':'сороковы́м'	,'ins-p':'сороковы́ми'		},
+50	: {	'nom-m':'пятидеся́тый'	,'gen-m':'пятидеся́того'	,'dat-m':'пятидеся́тому'	,'ins-m':'пятидеся́тым'	,'pre-m':'пятидеся́том'	,'nom-f':'пятидеся́тая'	,'acc-f':'пятидеся́тую'	,'gen-f':'пятидеся́той'	,'int-alt-f':'пятидеся́тою'	,'nom-n':'пятидеся́тое'	,'nom-p':'пятидеся́тые'	,'gen-p':'пятидеся́тых'	,'dat-p':'пятидеся́тым'	,'ins-p':'пятидеся́тыми'		},
+60	: {	'nom-m':'шестидеся́тый'	,'gen-m':'шестидеся́того'	,'dat-m':'шестидеся́тому'	,'ins-m':'шестидеся́тым'	,'pre-m':'шестидеся́том'	,'nom-f':'шестидеся́тая'	,'acc-f':'шестидеся́тую'	,'gen-f':'шестидеся́той'	,'int-alt-f':'шестидеся́тою'	,'nom-n':'шестидеся́тое'	,'nom-p':'шестидеся́тые'	,'gen-p':'шестидеся́тых'	,'dat-p':'шестидеся́тым'	,'ins-p':'шестидеся́тыми'		},
+70	: {	'nom-m':'семидеся́тый'	,'gen-m':'семидеся́того'	,'dat-m':'семидеся́тому'	,'ins-m':'семидеся́тым'	,'pre-m':'семидеся́том'	,'nom-f':'семидеся́тая'	,'acc-f':'семидеся́тую'	,'gen-f':'семидеся́той'	,'int-alt-f':'семидеся́тою'	,'nom-n':'семидеся́тое'	,'nom-p':'семидеся́тые'	,'gen-p':'семидеся́тых'	,'dat-p':'семидеся́тым'	,'ins-p':'семидеся́тыми'		},
+80	: {	'nom-m':'восьмидеся́тый'	,'gen-m':'восьмидеся́того'	,'dat-m':'восьмидеся́тому'	,'ins-m':'восьмидеся́тым'	,'pre-m':'восьмидеся́том'	,'nom-f':'восьмидеся́тая'	,'acc-f':'восьмидеся́тую'	,'gen-f':'восьмидеся́той'	,'int-alt-f':'восьмидеся́тою'	,'nom-n':'восьмидеся́тое'	,'nom-p':'восьмидеся́тые'	,'gen-p':'восьмидеся́тых'	,'dat-p':'восьмидеся́тым'	,'ins-p':'восьмидеся́тыми'		},
+90	: {	'nom-m':'девяно́стый'	,'gen-m':'девяно́стого'	,'dat-m':'девяно́стому'	,'ins-m':'девяно́стым'	,'pre-m':'девяно́стом'	,'nom-f':'девяно́стая'	,'acc-f':'девяно́стую'	,'gen-f':'девяно́стой'	,'int-alt-f':'девяно́стою'	,'nom-n':'девяно́стое'	,'nom-p':'девяно́стые'	,'gen-p':'девяно́стых'	,'dat-p':'девяно́стым'	,'ins-p':'девяно́стыми'		},
+100	: {	'nom-m':'со́тый'	,'gen-m':'со́того'	,'dat-m':'со́тому'	,'ins-m':'со́тым'	,'pre-m':'со́том'	,'nom-f':'со́тая'	,'acc-f':'со́тую'	,'gen-f':'со́той'	,'int-alt-f':'со́тою'	,'nom-n':'со́тое'	,'nom-p':'со́тые'	,'gen-p':'со́тых'	,'dat-p':'со́тым'	,'ins-p':'со́тыми'		},
+200	: {	'nom-m':'двухсо́тый'	,'gen-m':'двухсо́того'	,'dat-m':'двухсо́тому'	,'ins-m':'двухсо́тым'	,'pre-m':'двухсо́том'	,'nom-f':'двухсо́тая'	,'acc-f':'двухсо́тую'	,'gen-f':'двухсо́той'	,'int-alt-f':'двухсо́тою'	,'nom-n':'двухсо́тое'	,'nom-p':'двухсо́тые'	,'gen-p':'двухсо́тых'	,'dat-p':'двухсо́тым'	,'ins-p':'двухсо́тыми'		},
+300	: {	'nom-m':'трёхсо́тый'	,'gen-m':'трёхсо́того'	,'dat-m':'трёхсо́тому'	,'ins-m':'трёхсо́тым'	,'pre-m':'трёхсо́том'	,'nom-f':'трёхсо́тая'	,'acc-f':'трёхсо́тую'	,'gen-f':'трёхсо́той'	,'int-alt-f':'трёхсо́тою'	,'nom-n':'трёхсо́тое'	,'nom-p':'трёхсо́тые'	,'gen-p':'трёхсо́тых'	,'dat-p':'трёхсо́тым'	,'ins-p':'трёхсо́тыми'		},
+400	: {	'nom-m':'четырёхсо́тый'	,'gen-m':'четырёхсо́того'	,'dat-m':'четырёхсо́тому'	,'ins-m':'четырёхсо́тым'	,'pre-m':'четырёхсо́том'	,'nom-f':'четырёхсо́тая'	,'acc-f':'четырёхсо́тую'	,'gen-f':'четырёхсо́той'	,'int-alt-f':'четырёхсо́тою'	,'nom-n':'четырёхсо́тое'	,'nom-p':'четырёхсо́тые'	,'gen-p':'четырёхсо́тых'	,'dat-p':'четырёхсо́тым'	,'ins-p':'четырёхсо́тыми'		},
+500	: {	'nom-m':'пятисо́тый'	,'gen-m':'пятисо́того'	,'dat-m':'пятисо́тому'	,'ins-m':'пятисо́тым'	,'pre-m':'пятисо́том'	,'nom-f':'пятисо́тая'	,'acc-f':'пятисо́тую'	,'gen-f':'пятисо́той'	,'int-alt-f':'пятисо́тою'	,'nom-n':'пятисо́тое'	,'nom-p':'пятисо́тые'	,'gen-p':'пятисо́тых'	,'dat-p':'пятисо́тым'	,'ins-p':'пятисо́тыми'		},
+600	: {	'nom-m':'шестисо́тый'	,'gen-m':'шестисо́того'	,'dat-m':'шестисо́тому'	,'ins-m':'шестисо́тым'	,'pre-m':'шестисо́том'	,'nom-f':'шестисо́тая'	,'acc-f':'шестисо́тую'	,'gen-f':'шестисо́той'	,'int-alt-f':'шестисо́тою'	,'nom-n':'шестисо́тое'	,'nom-p':'шестисо́тые'	,'gen-p':'шестисо́тых'	,'dat-p':'шестисо́тым'	,'ins-p':'шестисо́тыми'		},
+700	: {	'nom-m':'семисо́тый'	,'gen-m':'семисо́того'	,'dat-m':'семисо́тому'	,'ins-m':'семисо́тым'	,'pre-m':'семисо́том'	,'nom-f':'семисо́тая'	,'acc-f':'семисо́тую'	,'gen-f':'семисо́той'	,'int-alt-f':'семисо́тою'	,'nom-n':'семисо́тое'	,'nom-p':'семисо́тые'	,'gen-p':'семисо́тых'	,'dat-p':'семисо́тым'	,'ins-p':'семисо́тыми'		},
+800	: {	'nom-m':'восьмисо́тый'	,'gen-m':'восьмисо́того'	,'dat-m':'восьмисо́тому'	,'ins-m':'восьмисо́тым'	,'pre-m':'восьмисо́том'	,'nom-f':'восьмисо́тая'	,'acc-f':'восьмисо́тую'	,'gen-f':'восьмисо́той'	,'int-alt-f':'восьмисо́тою'	,'nom-n':'восьмисо́тое'	,'nom-p':'восьмисо́тые'	,'gen-p':'восьмисо́тых'	,'dat-p':'восьмисо́тым'	,'ins-p':'восьмисо́тыми'		},
+900	: {	'nom-m':'девятисо́тый'	,'gen-m':'девятисо́того'	,'dat-m':'девятисо́тому'	,'ins-m':'девятисо́тым'	,'pre-m':'девятисо́том'	,'nom-f':'девятисо́тая'	,'acc-f':'девятисо́тую'	,'gen-f':'девятисо́той'	,'int-alt-f':'девятисо́тою'	,'nom-n':'девятисо́тое'	,'nom-p':'девятисо́тые'	,'gen-p':'девятисо́тых'	,'dat-p':'девятисо́тым'	,'ins-p':'девятисо́тыми'		},
+1000	: {	'nom-m':'ты́сячный'	,'gen-m':'ты́сячного'	,'dat-m':'ты́сячному'	,'ins-m':'ты́сячным'	,'pre-m':'ты́сячном'	,'nom-f':'ты́сячная'	,'acc-f':'ты́сячную'	,'gen-f':'ты́сячной'	,'int-alt-f':'ты́сячною'	,'nom-n':'ты́сячное'	,'nom-p':'ты́сячные'	,'gen-p':'ты́сячных'	,'dat-p':'ты́сячным'	,'ins-p':'ты́сячными'		},
+2000	: {	'nom-m':'двухты́сячный'	,'gen-m':'двухты́сячного'	,'dat-m':'двухты́сячному'	,'ins-m':'двухты́сячным'	,'pre-m':'двухты́сячном'	,'nom-f':'двухты́сячная'	,'acc-f':'двухты́сячную'	,'gen-f':'двухты́сячной'	,'int-alt-f':'двухты́сячною'	,'nom-n':'двухты́сячное'	,'nom-p':'двухты́сячные'	,'gen-p':'двухты́сячных'	,'dat-p':'двухты́сячным'	,'ins-p':'двухты́сячными'		},
+3000	: {	'nom-m':'трёхты́сячный'	,'gen-m':'трёхты́сячного'	,'dat-m':'трёхты́сячному'	,'ins-m':'трёхты́сячным'	,'pre-m':'трёхты́сячном'	,'nom-f':'трёхты́сячная'	,'acc-f':'трёхты́сячную'	,'gen-f':'трёхты́сячной'	,'int-alt-f':'трёхты́сячною'	,'nom-n':'трёхты́сячное'	,'nom-p':'трёхты́сячные'	,'gen-p':'трёхты́сячных'	,'dat-p':'трёхты́сячным'	,'ins-p':'трёхты́сячными'		},
+4000	: {	'nom-m':'четырёхты́сячный'	,'gen-m':'четырёхты́сячного'	,'dat-m':'четырёхты́сячному'	,'ins-m':'четырёхты́сячным'	,'pre-m':'четырёхты́сячном'	,'nom-f':'четырёхты́сячная'	,'acc-f':'четырёхты́сячную'	,'gen-f':'четырёхты́сячной'	,'int-alt-f':'четырёхты́сячною'	,'nom-n':'четырёхты́сячное'	,'nom-p':'четырёхты́сячные'	,'gen-p':'четырёхты́сячных'	,'dat-p':'четырёхты́сячным'	,'ins-p':'четырёхты́сячными'		},
+5000	: {	'nom-m':'пятиты́сячный'	,'gen-m':'пятиты́сячного'	,'dat-m':'пятиты́сячному'	,'ins-m':'пятиты́сячным'	,'pre-m':'пятиты́сячном'	,'nom-f':'пятиты́сячная'	,'acc-f':'пятиты́сячную'	,'gen-f':'пятиты́сячной'	,'int-alt-f':'пятиты́сячною'	,'nom-n':'пятиты́сячное'	,'nom-p':'пятиты́сячные'	,'gen-p':'пятиты́сячных'	,'dat-p':'пятиты́сячным'	,'ins-p':'пятиты́сячными'		},
+6000	: {	'nom-m':'шеститы́сячный'	,'gen-m':'шеститы́сячного'	,'dat-m':'шеститы́сячному'	,'ins-m':'шеститы́сячным'	,'pre-m':'шеститы́сячном'	,'nom-f':'шеститы́сячная'	,'acc-f':'шеститы́сячную'	,'gen-f':'шеститы́сячной'	,'int-alt-f':'шеститы́сячною'	,'nom-n':'шеститы́сячное'	,'nom-p':'шеститы́сячные'	,'gen-p':'шеститы́сячных'	,'dat-p':'шеститы́сячным'	,'ins-p':'шеститы́сячными'		},
+7000	: {	'nom-m':'семиты́сячный'	,'gen-m':'семиты́сячного'	,'dat-m':'семиты́сячному'	,'ins-m':'семиты́сячным'	,'pre-m':'семиты́сячном'	,'nom-f':'семиты́сячная'	,'acc-f':'семиты́сячную'	,'gen-f':'семиты́сячной'	,'int-alt-f':'семиты́сячною'	,'nom-n':'семиты́сячное'	,'nom-p':'семиты́сячные'	,'gen-p':'семиты́сячных'	,'dat-p':'семиты́сячным'	,'ins-p':'семиты́сячными'		},
+8000	: {	'nom-m':'восьмиты́сячный'	,'gen-m':'восьмиты́сячного'	,'dat-m':'восьмиты́сячному'	,'ins-m':'восьмиты́сячным'	,'pre-m':'восьмиты́сячном'	,'nom-f':'восьмиты́сячная'	,'acc-f':'восьмиты́сячную'	,'gen-f':'восьмиты́сячной'	,'int-alt-f':'восьмиты́сячною'	,'nom-n':'восьмиты́сячное'	,'nom-p':'восьмиты́сячные'	,'gen-p':'восьмиты́сячных'	,'dat-p':'восьмиты́сячным'	,'ins-p':'восьмиты́сячными'		},
+9000	: {	'nom-m':'девятиты́сячный'	,'gen-m':'девятиты́сячного'	,'dat-m':'девятиты́сячному'	,'ins-m':'девятиты́сячным'	,'pre-m':'девятиты́сячном'	,'nom-f':'девятиты́сячная'	,'acc-f':'девятиты́сячную'	,'gen-f':'девятиты́сячной'	,'int-alt-f':'девятиты́сячною'	,'nom-n':'девятиты́сячное'	,'nom-p':'девятиты́сячные'	,'gen-p':'девятиты́сячных'	,'dat-p':'девятиты́сячным'	,'ins-p':'девятиты́сячными'		},
+10000	: {	'nom-m':'десятиты́сячный'	,'gen-m':'десятиты́сячного'	,'dat-m':'десятиты́сячному'	,'ins-m':'десятиты́сячным'	,'pre-m':'десятиты́сячном'	,'nom-f':'десятиты́сячная'	,'acc-f':'десятиты́сячную'	,'gen-f':'десятиты́сячной'	,'int-alt-f':'десятиты́сячною'	,'nom-n':'десятиты́сячное'	,'nom-p':'десятиты́сячные'	,'gen-p':'десятиты́сячных'	,'dat-p':'десятиты́сячным'	,'ins-p':'десятиты́сячными'		},
+1000000	: {	'nom-m':'миллио́нный'	,'gen-m':'миллио́нного'	,'dat-m':'миллио́нному'	,'ins-m':'миллио́нным'	,'pre-m':'миллио́нном'	,'nom-f':'миллио́нная'	,'acc-f':'миллио́нную'	,'gen-f':'миллио́нной'	,'int-alt-f':'миллио́нною'	,'nom-n':'миллио́нное'	,'nom-p':'миллио́нные'	,'gen-p':'миллио́нных'	,'dat-p':'миллио́нным'	,'ins-p':'миллио́нными'		},
+1000000000	: {	'nom-m':'миллиа́рдный'	,'gen-m':'миллиа́рдного'	,'dat-m':'миллиа́рдному'	,'ins-m':'миллиа́рдным'	,'pre-m':'миллиа́рдном'	,'nom-f':'миллиа́рдная'	,'acc-f':'миллиа́рдную'	,'gen-f':'миллиа́рдной'	,'int-alt-f':'миллиа́рдною'	,'nom-n':'миллиа́рдное'	,'nom-p':'миллиа́рдные'	,'gen-p':'миллиа́рдных'	,'dat-p':'миллиа́рдным'	,'ins-p':'миллиа́рдными'		}
+};
+
+var caseConverter = {
+	'nom-m': 'nom-m',	'acc-m-in': 'nom-m', 	'acc-m-an': 'gen-m', 	'gen-m': 'gen-m',
+	'dat-m': 'dat-m', 	'ins-m': 'ins-m', 	'pre-m': 'pre-m',
+	
+	'nom-f': 'nom-f',	'acc-f': 'acc-f',	'gen-f': 'gen-f',
+	'dat-f': 'gen-f', 	'ins-f': 'gen-f', 	'ins-alt-f': 'ins-alt-f', 	'pre-f': 'gen-f',
+	
+	'nom-n': 'nom-n',	'acc-n': 'nom-n',	'gen-n': 'gen-m',
+	'dat-n': 'dat-m', 	'ins-n': 'ins-m', 	'pre-n': 'pre-m',
+};
+
+const NUMBER_SINGULAR = "singular";
+const NUMBER_PLURAL = "plural";
+
+function getOrdinalNumber(value, gender, number, wordCase) {
+
+	var wordNumberSet = smallNumbersOrdinalWords[value];
+
+	var lookUpKey;
+
+	if (number === NUMBER_PLURAL) {
+		switch (wordCase) {
+			case "nom": lookUpKey = ""; break;
+			case "acc": lookUpKey = ""; break;
+			case "gen": lookUpKey = ""; break;
+			case "dat": lookUpKey = ""; break;
+			case "ins": lookUpKey = ""; break;
+			case "pre": lookUpKey = ""; break;
+		}
+	}
+	else if (gender === "m") {
+			case "nom": lookUpKey = ""; break;
+			case "acc": lookUpKey = ""; break;
+			case "gen": lookUpKey = ""; break;
+			case "dat": lookUpKey = ""; break;
+			case "ins": lookUpKey = ""; break;
+			case "pre": lookUpKey = ""; break;
+	}
+	else if (gender === "f") {
+			case "nom": lookUpKey = ""; break;
+			case "acc": lookUpKey = ""; break;
+			case "gen": lookUpKey = ""; break;
+			case "dat": lookUpKey = ""; break;
+			case "ins": lookUpKey = ""; break;
+			case "pre": lookUpKey = ""; break;
+	}
+	else if (gender === "n") {
+			case "nom": lookUpKey = ""; break;
+			case "acc": lookUpKey = ""; break;
+			case "gen": lookUpKey = ""; break;
+			case "dat": lookUpKey = ""; break;
+			case "ins": lookUpKey = ""; break;
+			case "pre": lookUpKey = ""; break;
+	}
+}
+
+
+	var bigNumbers = {
+		'10^3': { 'nom-s':'ты́сяча','acc-s':'ты́сячу','gen-s':'ты́сячи','dat-s':'ты́сяче','ins-s':'ты́сячей','pre-s':'ты́сяче','nom-p':'ты́сячи','acc-p':'ты́сячи','gen-p':'ты́сяч','dat-p':'ты́сячам','ins-p':'ты́сячами','pre-p':'ты́сячах','gender':'f','animate':'in', }, 	'10^6': { 'nom-s':'миллио́н','acc-s':'миллио́н','gen-s':'миллио́на','dat-s':'миллио́ну','ins-s':'миллио́ном','pre-s':'миллио́не','nom-p':'миллио́ны','acc-p':'миллио́ны','gen-p':'миллио́нов','dat-p':'миллио́нам','ins-p':'миллио́нами','pre-p':'миллио́нах','gender':'m','animate':'in', }, 	'10^9': { 'nom-s':'миллиа́рд','acc-s':'миллиа́рд','gen-s':'миллиа́рда','dat-s':'миллиа́рду','ins-s':'миллиа́рдом','pre-s':'миллиа́рде','nom-p':'миллиа́рды','acc-p':'миллиа́рды','gen-p':'миллиа́рдов','dat-p':'миллиа́рдам','ins-p':'миллиа́рдами','pre-p':'миллиа́рдах','gender':'m','animate':'in', }, 	'10^12': { 'nom-s':'триллио́н','acc-s':'триллио́н','gen-s':'триллио́на','dat-s':'триллио́ну','ins-s':'триллио́ном','pre-s':'триллио́не','nom-p':'триллио́ны','acc-p':'триллио́ны','gen-p':'триллио́нов','dat-p':'триллио́нам','ins-p':'триллио́нами','pre-p':'триллио́нах','gender':'m','animate':'in', }, 	'10^15': { 'nom-s':'квадриллио́н','acc-s':'квадриллио́н','gen-s':'квадриллио́на','dat-s':'квадриллио́ну','ins-s':'квадриллио́ном','pre-s':'квадриллио́не','nom-p':'квадриллио́ны','acc-p':'квадриллио́ны','gen-p':'квадриллио́нов','dat-p':'квадриллио́нам','ins-p':'квадриллио́нами','pre-p':'квадриллио́нах','gender':'m','animate':'in', }, 	'10^18': { 'nom-s':'квинтиллио́н','acc-s':'квинтиллио́н','gen-s':'квинтиллио́на','dat-s':'квинтиллио́ну','ins-s':'квинтиллио́ном','pre-s':'квинтиллио́не','nom-p':'квинтиллио́ны','acc-p':'квинтиллио́ны','gen-p':'квинтиллио́нов','dat-p':'квинтиллио́нам','ins-p':'квинтиллио́нами','pre-p':'квинтиллио́нах','gender':'m','animate':'in', }, 	'10^21': { 'nom-s':'секстиллио́н','acc-s':'секстиллио́н','gen-s':'секстиллио́на','dat-s':'секстиллио́ну','ins-s':'секстиллио́ном','pre-s':'секстиллио́не','nom-p':'секстиллио́ны','acc-p':'секстиллио́ны','gen-p':'секстиллио́нов','dat-p':'секстиллио́нам','ins-p':'секстиллио́нами','pre-p':'секстиллио́нах','gender':'m','animate':'in', }, 	'10^24': { 'nom-s':'септиллио́н','acc-s':'септиллио́н','gen-s':'септиллио́на','dat-s':'септиллио́ну','ins-s':'септиллио́ном','pre-s':'септиллио́не','nom-p':'септиллио́ны','acc-p':'септиллио́ны','gen-p':'септиллио́нов','dat-p':'септиллио́нам','ins-p':'септиллио́нами','pre-p':'септиллио́нах','gender':'m','animate':'in', }, 	'10^27': { 'nom-s':'октиллио́н','acc-s':'октиллио́н','gen-s':'октиллио́на','dat-s':'октиллио́ну','ins-s':'октиллио́ном','pre-s':'октиллио́не','nom-p':'октиллио́ны','acc-p':'октиллио́ны','gen-p':'октиллио́нов','dat-p':'октиллио́нам','ins-p':'октиллио́нами','pre-p':'октиллио́нах','gender':'m','animate':'in', }, 	'10^30': { 'nom-s':'нониллио́н','acc-s':'нониллио́н','gen-s':'нониллио́на','dat-s':'нониллио́ну','ins-s':'нониллио́ном','pre-s':'нониллио́не','nom-p':'нониллио́ны','acc-p':'нониллио́ны','gen-p':'нониллио́нов','dat-p':'нониллио́нам','ins-p':'нониллио́нами','pre-p':'нониллио́нах','gender':'m','animate':'in', }, 	'10^33': { 'nom-s':'дециллио́н','acc-s':'дециллио́н','gen-s':'дециллио́на','dat-s':'дециллио́ну','ins-s':'дециллио́ном','pre-s':'дециллио́не','nom-p':'дециллио́ны','acc-p':'дециллио́ны','gen-p':'дециллио́нов','dat-p':'дециллио́нам','ins-p':'дециллио́нами','pre-p':'дециллио́нах','gender':'m','animate':'in', }, 	'10^36': { 'nom-s':'ундециллио́н','acc-s':'ундециллио́н','gen-s':'ундециллио́на','dat-s':'ундециллио́ну','ins-s':'ундециллио́ном','pre-s':'ундециллио́не','nom-p':'ундециллио́ны','acc-p':'ундециллио́ны','gen-p':'ундециллио́нов','dat-p':'ундециллио́нам','ins-p':'ундециллио́нами','pre-p':'ундециллио́нах','gender':'m','animate':'in', }, 	'10^39': { 'nom-s':'додециллио́н','acc-s':'додециллио́н','gen-s':'додециллио́на','dat-s':'додециллио́ну','ins-s':'додециллио́ном','pre-s':'додециллио́не','nom-p':'додециллио́ны','acc-p':'додециллио́ны','gen-p':'додециллио́нов','dat-p':'додециллио́нам','ins-p':'додециллио́нами','pre-p':'додециллио́нах','gender':'m','animate':'in', }, 	'10^42': { 'nom-s':'тредециллио́н','acc-s':'тредециллио́н','gen-s':'тредециллио́на','dat-s':'тредециллио́ну','ins-s':'тредециллио́ном','pre-s':'тредециллио́не','nom-p':'тредециллио́ны','acc-p':'тредециллио́ны','gen-p':'тредециллио́нов','dat-p':'тредециллио́нам','ins-p':'тредециллио́нами','pre-p':'тредециллио́нах','gender':'m','animate':'in', }, 	'10^45': { 'nom-s':'кваттуордециллио́н','acc-s':'кваттуордециллио́н','gen-s':'кваттуордециллио́на','dat-s':'кваттуордециллио́ну','ins-s':'кваттуордециллио́ном','pre-s':'кваттуордециллио́не','nom-p':'кваттуордециллио́ны','acc-p':'кваттуордециллио́ны','gen-p':'кваттуордециллио́нов','dat-p':'кваттуордециллио́нам','ins-p':'кваттуордециллио́нами','pre-p':'кваттуордециллио́нах','gender':'m','animate':'in', }, 	'10^48': { 'nom-s':'квиндециллио́н','acc-s':'квиндециллио́н','gen-s':'квиндециллио́на','dat-s':'квиндециллио́ну','ins-s':'квиндециллио́ном','pre-s':'квиндециллио́не','nom-p':'квиндециллио́ны','acc-p':'квиндециллио́ны','gen-p':'квиндециллио́нов','dat-p':'квиндециллио́нам','ins-p':'квиндециллио́нами','pre-p':'квиндециллио́нах','gender':'m','animate':'in', }, 	'10^51': { 'nom-s':'cедециллио́н','acc-s':'cедециллио́н','gen-s':'cедециллио́на','dat-s':'cедециллио́ну','ins-s':'cедециллио́ном','pre-s':'cедециллио́не','nom-p':'cедециллио́ны','acc-p':'cедециллио́ны','gen-p':'cедециллио́нов','dat-p':'cедециллио́нам','ins-p':'cедециллио́нами','pre-p':'cедециллио́нах','gender':'m','animate':'in', }, 	'10^54': { 'nom-s':'септдециллио́н','acc-s':'септдециллио́н','gen-s':'септдециллио́на','dat-s':'септдециллио́ну','ins-s':'септдециллио́ном','pre-s':'септдециллио́не','nom-p':'септдециллио́ны','acc-p':'септдециллио́ны','gen-p':'септдециллио́нов','dat-p':'септдециллио́нам','ins-p':'септдециллио́нами','pre-p':'септдециллио́нах','gender':'m','animate':'in', }, 	'10^57': { 'nom-s':'дуодевигинтиллио́н','acc-s':'дуодевигинтиллио́н','gen-s':'дуодевигинтиллио́на','dat-s':'дуодевигинтиллио́ну','ins-s':'дуодевигинтиллио́ном','pre-s':'дуодевигинтиллио́не','nom-p':'дуодевигинтиллио́ны','acc-p':'дуодевигинтиллио́ны','gen-p':'дуодевигинтиллио́нов','dat-p':'дуодевигинтиллио́нам','ins-p':'дуодевигинтиллио́нами','pre-p':'дуодевигинтиллио́нах','gender':'m','animate':'in', }, 	'10^60': { 'nom-s':'ундевигинтиллио́н','acc-s':'ундевигинтиллио́н','gen-s':'ундевигинтиллио́на','dat-s':'ундевигинтиллио́ну','ins-s':'ундевигинтиллио́ном','pre-s':'ундевигинтиллио́не','nom-p':'ундевигинтиллио́ны','acc-p':'ундевигинтиллио́ны','gen-p':'ундевигинтиллио́нов','dat-p':'ундевигинтиллио́нам','ins-p':'ундевигинтиллио́нами','pre-p':'ундевигинтиллио́нах','gender':'m','animate':'in', }, 	'10^63': { 'nom-s':'вигинтиллио́н','acc-s':'вигинтиллио́н','gen-s':'вигинтиллио́на','dat-s':'вигинтиллио́ну','ins-s':'вигинтиллио́ном','pre-s':'вигинтиллио́не','nom-p':'вигинтиллио́ны','acc-p':'вигинтиллио́ны','gen-p':'вигинтиллио́нов','dat-p':'вигинтиллио́нам','ins-p':'вигинтиллио́нами','pre-p':'вигинтиллио́нах','gender':'m','animate':'in', }, 	'10^66': { 'nom-s':'анвигинтиллио́н','acc-s':'анвигинтиллио́н','gen-s':'анвигинтиллио́на','dat-s':'анвигинтиллио́ну','ins-s':'анвигинтиллио́ном','pre-s':'анвигинтиллио́не','nom-p':'анвигинтиллио́ны','acc-p':'анвигинтиллио́ны','gen-p':'анвигинтиллио́нов','dat-p':'анвигинтиллио́нам','ins-p':'анвигинтиллио́нами','pre-p':'анвигинтиллио́нах','gender':'m','animate':'in', }, 	'10^69': { 'nom-s':'дуовигинтиллио́н','acc-s':'дуовигинтиллио́н','gen-s':'дуовигинтиллио́на','dat-s':'дуовигинтиллио́ну','ins-s':'дуовигинтиллио́ном','pre-s':'дуовигинтиллио́не','nom-p':'дуовигинтиллио́ны','acc-p':'дуовигинтиллио́ны','gen-p':'дуовигинтиллио́нов','dat-p':'дуовигинтиллио́нам','ins-p':'дуовигинтиллио́нами','pre-p':'дуовигинтиллио́нах','gender':'m','animate':'in', }, 	'10^72': { 'nom-s':'тревигинтиллио́н','acc-s':'тревигинтиллио́н','gen-s':'тревигинтиллио́на','dat-s':'тревигинтиллио́ну','ins-s':'тревигинтиллио́ном','pre-s':'тревигинтиллио́не','nom-p':'тревигинтиллио́ны','acc-p':'тревигинтиллио́ны','gen-p':'тревигинтиллио́нов','dat-p':'тревигинтиллио́нам','ins-p':'тревигинтиллио́нами','pre-p':'тревигинтиллио́нах','gender':'m','animate':'in', }, 	'10^75': { 'nom-s':'кватторвигинтиллио́н','acc-s':'кватторвигинтиллио́н','gen-s':'кватторвигинтиллио́на','dat-s':'кватторвигинтиллио́ну','ins-s':'кватторвигинтиллио́ном','pre-s':'кватторвигинтиллио́не','nom-p':'кватторвигинтиллио́ны','acc-p':'кватторвигинтиллио́ны','gen-p':'кватторвигинтиллио́нов','dat-p':'кватторвигинтиллио́нам','ins-p':'кватторвигинтиллио́нами','pre-p':'кватторвигинтиллио́нах','gender':'m','animate':'in', }, 	'10^78': { 'nom-s':'квинвигинтиллио́н','acc-s':'квинвигинтиллио́н','gen-s':'квинвигинтиллио́на','dat-s':'квинвигинтиллио́ну','ins-s':'квинвигинтиллио́ном','pre-s':'квинвигинтиллио́не','nom-p':'квинвигинтиллио́ны','acc-p':'квинвигинтиллио́ны','gen-p':'квинвигинтиллио́нов','dat-p':'квинвигинтиллио́нам','ins-p':'квинвигинтиллио́нами','pre-p':'квинвигинтиллио́нах','gender':'m','animate':'in', }, 	'10^81': { 'nom-s':'сексвигинтиллио́н','acc-s':'сексвигинтиллио́н','gen-s':'сексвигинтиллио́на','dat-s':'сексвигинтиллио́ну','ins-s':'сексвигинтиллио́ном','pre-s':'сексвигинтиллио́не','nom-p':'сексвигинтиллио́ны','acc-p':'сексвигинтиллио́ны','gen-p':'сексвигинтиллио́нов','dat-p':'сексвигинтиллио́нам','ins-p':'сексвигинтиллио́нами','pre-p':'сексвигинтиллио́нах','gender':'m','animate':'in', }, 	'10^84': { 'nom-s':'септемвигинтиллио́н','acc-s':'септемвигинтиллио́н','gen-s':'септемвигинтиллио́на','dat-s':'септемвигинтиллио́ну','ins-s':'септемвигинтиллио́ном','pre-s':'септемвигинтиллио́не','nom-p':'септемвигинтиллио́ны','acc-p':'септемвигинтиллио́ны','gen-p':'септемвигинтиллио́нов','dat-p':'септемвигинтиллио́нам','ins-p':'септемвигинтиллио́нами','pre-p':'септемвигинтиллио́нах','gender':'m','animate':'in', }, 	'10^87': { 'nom-s':'октовигинтиллио́н','acc-s':'октовигинтиллио́н','gen-s':'октовигинтиллио́на','dat-s':'октовигинтиллио́ну','ins-s':'октовигинтиллио́ном','pre-s':'октовигинтиллио́не','nom-p':'октовигинтиллио́ны','acc-p':'октовигинтиллио́ны','gen-p':'октовигинтиллио́нов','dat-p':'октовигинтиллио́нам','ins-p':'октовигинтиллио́нами','pre-p':'октовигинтиллио́нах','gender':'m','animate':'in', }, 	'10^90': { 'nom-s':'новемвигинтиллио́н','acc-s':'новемвигинтиллио́н','gen-s':'новемвигинтиллио́на','dat-s':'новемвигинтиллио́ну','ins-s':'новемвигинтиллио́ном','pre-s':'новемвигинтиллио́не','nom-p':'новемвигинтиллио́ны','acc-p':'новемвигинтиллио́ны','gen-p':'новемвигинтиллио́нов','dat-p':'новемвигинтиллио́нам','ins-p':'новемвигинтиллио́нами','pre-p':'новемвигинтиллио́нах','gender':'m','animate':'in', }, 	'10^93': { 'nom-s':'тригинтиллио́н','acc-s':'тригинтиллио́н','gen-s':'тригинтиллио́на','dat-s':'тригинтиллио́ну','ins-s':'тригинтиллио́ном','pre-s':'тригинтиллио́не','nom-p':'тригинтиллио́ны','acc-p':'тригинтиллио́ны','gen-p':'тригинтиллио́нов','dat-p':'тригинтиллио́нам','ins-p':'тригинтиллио́нами','pre-p':'тригинтиллио́нах','gender':'m','animate':'in', }, 	'10^96': { 'nom-s':'антригинтиллио́н','acc-s':'антригинтиллио́н','gen-s':'антригинтиллио́на','dat-s':'антригинтиллио́ну','ins-s':'антригинтиллио́ном','pre-s':'антригинтиллио́не','nom-p':'антригинтиллио́ны','acc-p':'антригинтиллио́ны','gen-p':'антригинтиллио́нов','dat-p':'антригинтиллио́нам','ins-p':'антригинтиллио́нами','pre-p':'антригинтиллио́нах','gender':'m','animate':'in', },
+
+	};
+
+	var exampleNouns = {
+		0: { 'nom-s':'же́нщина','acc-s':'же́нщину','gen-s':'же́нщины','dat-s':'же́нщине','ins-s':'же́нщиной','pre-s':'же́нщине','nom-p':'же́нщины','acc-p':'же́нщин','gen-p':'же́нщин','dat-p':'же́нщинам','ins-p':'же́нщинами','pre-p':'же́нщинах','gender':'f','animate':'an','english':'lady', }, 	1: { 'nom-s':'мужчи́на','acc-s':'мужчи́ну','gen-s':'мужчи́ны','dat-s':'мужчи́не','ins-s':'мужчи́ной','pre-s':'мужчи́не','nom-p':'мужчи́ны','acc-p':'мужчи́н','gen-p':'мужчи́н','dat-p':'мужчи́нам','ins-p':'мужчи́нами','pre-p':'мужчи́нах','gender':'m','animate':'an','english':'man', }, 	2: { 'nom-s':'де́вочка','acc-s':'де́вочку','gen-s':'де́вочки','dat-s':'де́вочке','ins-s':'де́вочкой','pre-s':'де́вочке','nom-p':'де́вочки','acc-p':'де́вочек','gen-p':'де́вочек','dat-p':'де́вочкам','ins-p':'де́вочками','pre-p':'де́вочках','gender':'f','animate':'an','english':'girl', }, 	3: { 'nom-s':'ма́льчик','acc-s':'ма́льчика','gen-s':'ма́льчика','dat-s':'ма́льчику','ins-s':'ма́льчиком','pre-s':'ма́льчике','nom-p':'ма́льчики','acc-p':'ма́льчиков','gen-p':'ма́льчиков','dat-p':'ма́льчикам','ins-p':'ма́льчиками','pre-p':'ма́льчиках','gender':'m','animate':'an','english':'boy', }, 	4: { 'nom-s':'праде́душка','acc-s':'праде́душку','gen-s':'праде́душки','dat-s':'праде́душке','ins-s':'праде́душкой','pre-s':'праде́душке','nom-p':'праде́душки','acc-p':'праде́душек','gen-p':'праде́душек','dat-p':'праде́душкам','ins-p':'праде́душками','pre-p':'праде́душках','gender':'m','animate':'an','english':'great-grandfather', }, 	5: { 'nom-s':'почита́тель','acc-s':'почита́теля','gen-s':'почита́теля','dat-s':'почита́телю','ins-s':'почита́телем','pre-s':'почита́теле','nom-p':'почита́тели','acc-p':'почита́телей','gen-p':'почита́телей','dat-p':'почита́телям','ins-p':'почита́телями','pre-p':'почита́телях','gender':'m','animate':'an','english':'admirer', }, 	6: { 'nom-s':'снеги́рь','acc-s':'снегиря́','gen-s':'снегиря́','dat-s':'снегирю́','ins-s':'снегирём','pre-s':'снегире́','nom-p':'снегири́','acc-p':'снегире́й','gen-p':'снегире́й','dat-p':'снегиря́м','ins-p':'снегиря́ми','pre-p':'снегиря́х','gender':'m','animate':'an','english':'bullfinch', }, 	7: { 'nom-s':'мали́новка','acc-s':'мали́новку','gen-s':'мали́новки','dat-s':'мали́новке','ins-s':'мали́новкой','pre-s':'мали́новке','nom-p':'мали́новки','acc-p':'мали́новок','gen-p':'мали́новок','dat-p':'мали́новкам','ins-p':'мали́новками','pre-p':'мали́новках','gender':'f','animate':'an','english':'robin', }, 	8: { 'nom-s':'бана́н','acc-s':'бана́н','gen-s':'бана́на','dat-s':'бана́ну','ins-s':'бана́ном','pre-s':'бана́не','nom-p':'бана́ны','acc-p':'бана́ны','gen-p':'бана́нов','dat-p':'бана́нам','ins-p':'бана́нами','pre-p':'бана́нах','gender':'m','animate':'in','english':'banana', }, 	9: { 'nom-s':'я́блоко','acc-s':'я́блоко','gen-s':'я́блока','dat-s':'я́блоку','ins-s':'я́блоком','pre-s':'я́блоке','nom-p':'я́блоки','acc-p':'я́блоки','gen-p':'я́блок','dat-p':'я́блокам','ins-p':'я́блоками','pre-p':'я́блоках','gender':'n','animate':'in','english':'apple', }, 	10: { 'nom-s':'гру́ша','acc-s':'гру́шу','gen-s':'гру́ши','dat-s':'гру́ше','ins-s':'гру́шей','pre-s':'гру́ше','nom-p':'гру́ши','acc-p':'гру́ши','gen-p':'груш','dat-p':'гру́шам','ins-p':'гру́шами','pre-p':'гру́шах','gender':'f','animate':'in','english':'pear', }, 	11: { 'nom-s':'меню́','acc-s':'меню́','gen-s':'меню́','dat-s':'меню́','ins-s':'меню́','pre-s':'меню́','nom-p':'меню́','acc-p':'меню́','gen-p':'меню́','dat-p':'меню́','ins-p':'меню́','pre-p':'меню́','gender':'n','animate':'in-i','english':'menu', }, 	12: { 'nom-s':'сло́во','acc-s':'сло́во','gen-s':'сло́ва','dat-s':'сло́ву','ins-s':'сло́вом','pre-s':'сло́ве','nom-p':'слова́','acc-p':'слова́','gen-p':'слов','dat-p':'слова́м','ins-p':'слова́ми','pre-p':'слова́х','gender':'n','animate':'in','english':'word', }, 	13: { 'nom-s':'бу́ква','acc-s':'бу́кву','gen-s':'бу́квы','dat-s':'бу́кве','ins-s':'бу́квой','pre-s':'бу́кве','nom-p':'бу́квы','acc-p':'бу́квы','gen-p':'букв','dat-p':'бу́квам','ins-p':'бу́квами','pre-p':'бу́квах','gender':'f','animate':'in','english':'letter', }, 	14: { 'nom-s':'сто́л','acc-s':'сто́л','gen-s':'стола́','dat-s':'столу́','ins-s':'столо́м','pre-s':'столе́','nom-p':'столы́','acc-p':'столы́','gen-p':'столо́в','dat-p':'стола́м','ins-p':'стола́ми','pre-p':'стола́х','gender':'m','animate':'in','english':'table', }, 	15: { 'nom-s':'потоло́к','acc-s':'потоло́к','gen-s':'потолка́','dat-s':'потолку́','ins-s':'потолко́м','pre-s':'потолке́','nom-p':'потолки́','acc-p':'потолки́','gen-p':'потолко́в','dat-p':'потолка́м','ins-p':'потолка́ми','pre-p':'потолка́х','gender':'m','animate':'in','english':'ceiling', }, 	16: { 'nom-s':'две́рь','acc-s':'две́рь','gen-s':'две́ри','dat-s':'две́ри','ins-s':'две́рью','pre-s':'две́ри','nom-p':'две́ри','acc-p':'две́ри','gen-p':'двере́й','dat-p':'дверя́м','ins-p':'дверя́ми|дверьми́','pre-p':'дверя́х','gender':'f','animate':'in','english':'door', }, 	17: { 'nom-s':'такси́','acc-s':'такси́','gen-s':'такси́','dat-s':'такси́','ins-s':'такси́','pre-s':'такси́','nom-p':'такси́','acc-p':'такси́','gen-p':'такси́','dat-p':'такси́','ins-p':'такси́','pre-p':'такси́','gender':'n','animate':'in-i','english':'taxi', }, 	18: { 'nom-s':'поцелу́й','acc-s':'поцелу́й','gen-s':'поцелу́я','dat-s':'поцелу́ю','ins-s':'поцелу́ем','pre-s':'поцелу́е','nom-p':'поцелу́и','acc-p':'поцелу́и','gen-p':'поцелу́ев','dat-p':'поцелу́ям','ins-p':'поцелу́ями','pre-p':'поцелу́ях','gender':'m','animate':'in','english':'kiss', }, 	19: { 'nom-s':'цига́рка','acc-s':'цига́рку','gen-s':'цига́рки','dat-s':'цига́рке','ins-s':'цига́ркой','pre-s':'цига́рке','nom-p':'цига́рки','acc-p':'цига́рки','gen-p':'цига́рок','dat-p':'цига́ркам','ins-p':'цига́рками','pre-p':'цига́рках','gender':'f','animate':'in','english':'cigarette', }, 	20: { 'nom-s':'ро́г','acc-s':'ро́г','gen-s':'ро́га','dat-s':'ро́гу','ins-s':'ро́гом','pre-s':'ро́ге','nom-p':'рога́','acc-p':'рога́','gen-p':'рого́в','dat-p':'рога́м','ins-p':'рога́ми','pre-p':'рога́х','gender':'m','animate':'in','english':'horn', }, 	21: { 'nom-s':'электро́н','acc-s':'электро́н','gen-s':'электро́на','dat-s':'электро́ну','ins-s':'электро́ном','pre-s':'электро́не','nom-p':'электро́ны','acc-p':'электро́ны','gen-p':'электро́нов','dat-p':'электро́нам','ins-p':'электро́нами','pre-p':'электро́нах','gender':'m','animate':'in','english':'electron', }, 	22: { 'nom-s':'волокно́','acc-s':'волокно́','gen-s':'волокна́','dat-s':'волокну́','ins-s':'волокно́м','pre-s':'волокне́','nom-p':'воло́кна','acc-p':'воло́кна','gen-p':'воло́кон','dat-p':'воло́кнам','ins-p':'воло́кнами','pre-p':'воло́кнах','gender':'n','animate':'in','english':'fibre', },
+
+	};
+
+	/**
+		The numberStr parameter is a string of digits (only the characters [0-9])
+		which is split into an array of 3-digit strings. If the number of digits isn't
+		divisible by 3 then it's the left-most group which contains the string of digits
+		which is only 1 or 2 digits long.
+
+	*/
+	function splitNumberInto3DigitGroups(numberStr) {
+		var numberSplit = numberStr.split('');
+
+		var numberOfGroups = (numberSplit.length+2 - ((numberSplit.length+2)%3)) / 3;
+
+		var groups = new Array(numberOfGroups);
+
+		var groupIndex = numberOfGroups - 1;
+
+		for (var i=numberSplit.length-1; i>=0; i-=3) {
+
+			var currentGroup = "";
+
+			// For 1 remaining digit on the left
+			if (i==0) {
+				currentGroup = numberSplit[0];
+			}
+			// For 2 remaining digits on the left
+			else if (i==1) {
+				currentGroup = numberSplit[0] + numberSplit[1];
+			}
+			// Otherwise for a group of 3 digits with the ith place on the right.
+			else {
+				currentGroup = numberSplit[i-2] + numberSplit[i-1] + numberSplit[i];
+			}
+
+			groups[groupIndex] = currentGroup;
+
+			groupIndex--;
+		}
+
+		return groups;
+	}
+
+	/**
+		Returns the digits that are relevant to the last word of that number in a 3-digit
+		(or up to 3-digit) block.
+
+		For example, the last word of the last number of 113 is 'трина́дцать' (thirteen),
+		which means '13' is returned.
+
+		For 126, 'шесть' (six) is the last word which means '6' is returned.
+
+		Or for 200, 'две́сти' (two-hundred in Russian is a single word)
+		is the last word which means '200' is returned.
+	*/
+	function getNumberEnding(threeDigitNumberStr) {
+
+		// If a number is less than 3 digits then 0's are inserted on the left to fill it up
+		if (threeDigitNumberStr.length == 1) {
+			threeDigitNumberStr = "00" + threeDigitNumberStr;
+		}
+		else if (threeDigitNumberStr.length == 2) {
+			threeDigitNumberStr = "0" + threeDigitNumberStr;
+		}
+
+		var numberSplit = threeDigitNumberStr.split('');
+
+		var numberEnding;
+
+		// If number is three 0s then return a single 0.
+		if (threeDigitNumberStr == "000") {
+			numberEnding = "0";
+		}
+		// If number is a teen.
+		else if (numberSplit[1] == "1") {
+			numberEnding = "1" + numberSplit[2];
+		}
+		// Otherwise if last digit isn't a 0.
+		else if (numberSplit[2] != "0") {
+			numberEnding = numberSplit[2];
+		}
+		// Otherwise, if a multiple of 10 but not 100
+		else if (numberSplit[1] != "0") {
+			numberEnding = numberSplit[1] + "0";
+		}
+		// Otherwise if a multiple of 100.
+		else {
+			numberEnding = numberSplit[0] + "00";
+		}
+
+		return numberEnding;
+	}
+
+	/**
+		Gets the correct number word for any string of digits from the
+		smallNumbers key-value set for any number from 0-900 which is a
+		single value word. If a number can be written differently for more
+		than one gender then each gender form for a particular number is
+		stored with a separate key-value pair. Each number value is an
+		object containing the necessary information about that number.
+	*/
+	function getSingleWordNumber(numberStr, gender, numberType) {
+
+		var numberKey;
+
+		if (numberStr == "1") {
+			if (gender == "m") numberKey = "1m";
+			else if (gender == "f") numberKey = "1f";
+			else if (gender == "n") numberKey = "1n";
+		}
+		else if (numberStr == "2") {
+			if (gender == "m") numberKey = "2mn";
+			else if (gender == "f") numberKey = "2f";
+			else if (gender == "n") numberKey = "2mn";
+		}
+		else {
+			numberKey = numberStr + "mfn";
+		}
+		
+		var wordToReturn;
+
+
+		if (numberType === NUMBER_TYPE_CARDINAL) {
+			wordToReturn = smallNumbers[numberKey];
+		}
+		else if (numberType === NUMBER_TYPE_ORDINAL_FULL) {
+			wordToReturn = "TEST";
+		}
+		else if (numberType === NUMBER_TYPE_ORDINAL_SHORT) {
+			wordToReturn = "TEST";
+		}
+		
+		
+		return wordToReturn;
+	}
+	
+	const NUMBER_TYPE_CARDINAL = "cardinal";
+	const NUMBER_TYPE_ORDINAL_FULL = "ordinal_full";
+	const NUMBER_TYPE_ORDINAL_SHORT = "ordinal_short";
+
+	function getRussianNumberWithNounInWords(wholeNumberBrokenDown, mainWord) {
+
+		var thousandToPowerOf = wholeNumberBrokenDown.length - 1;
+
+		var allWordGroups = new Array();
+
+		for (var i=0; i<wholeNumberBrokenDown.length; i++) {
+			var nextChunk = wholeNumberBrokenDown[i];
+
+			var declinedWord = null;
+			var gender = "m";
+
+			if (thousandToPowerOf == 0) {
+				declinedWord = mainWord;
+			}
+			else {
+				var bigNumbersKey = "10^" + (thousandToPowerOf*3);
+
+				if (bigNumbers[bigNumbersKey]) {
+					declinedWord = bigNumbers[bigNumbersKey];
+				}
+			}
+
+			if (declinedWord) {
+				gender = declinedWord["gender"];
+			}
+
+			var nextWordGroup = {
+				"hundreds": getSingleWordNumber(nextChunk["hundreds"], gender),
+				"tens": getSingleWordNumber(nextChunk["tens"], gender),
+				"numberEnding": getSingleWordNumber(nextChunk["numberEnding"], gender),
+				"declinedWord": declinedWord,
+			};
+
+			allWordGroups.push(nextWordGroup);
+
+			thousandToPowerOf--;
+		}
+
+		return allWordGroups;
+	}
+
+
+	function removeLeadingZeros(numberStr) {
+		var numberStrSplit = numberStr.split("");
+
+		var isLeadingZero = true;
+
+		var numberStrNew = "";
+
+		for (var i=0; i<numberStrSplit.length; i++) {
+
+			if (isLeadingZero == true) {
+				if (numberStrSplit[i] != "0") {
+					isLeadingZero = false;
+				}
+			}
+
+			if (isLeadingZero == false) {
+				numberStrNew = numberStrNew + numberStrSplit[i];
+			}
+		}
+
+		if (numberStrNew == "") numberStrNew = "0";
+
+		return numberStrNew;
+	}
+
+	/**
+	* Declines a number from a string of digits into words and outputs these to the table in all six cases
+	  and for a following optional noun if selected.
+	*/
+	function declineNumber(numberStr) {
+
+		var languageTableId = "autoDeclensionTable";
+
+		var threeDigitGroups = splitNumberInto3DigitGroups(numberStr);
+
+		var nounOptionsBox = $("#nounSelection");
+		var selectedOption = nounOptionsBox.find(":selected");
+
+		var nounToUse = null;
+		var gender = null;
+		var nounGenderClass = null;
+
+		var numberNomCase = null;
+
+		var endBlockCaseNom = null;
+		var endBlockCaseAcc = null;
+
+		if (selectedOption.val() != "no noun") {
+			nounToUse = exampleNouns[selectedOption.val()];
+
+			gender = nounToUse["gender"];
+
+			if (gender == "m") nounGenderClass = "nounGenderM";
+			else if (gender == "f") nounGenderClass = "nounGenderF";
+			else if (gender == "n") nounGenderClass = "nounGenderN";
+
+			var cases = new Array("nom","acc","gen","dat","ins","pre");
+
+			for (var key in cases) {
+				var nextCase = cases[key];
+				$("#" + languageTableId + " td." + nextCase + "-case.singular").html(nounToUse[nextCase + "-s"]);
+				$("#" + languageTableId + " td." + nextCase + "-case.plural").html(nounToUse[nextCase + "-p"]);
+			}
+		}
+
+
+
+		$("#" + languageTableId + " td.with-number").addClass("hidden");
+		$("#" + languageTableId + " td.singular").addClass("hidden");
+		$("#" + languageTableId + " td.plural").addClass("hidden");
+		$("#" + languageTableId + " th.with-number").addClass("hidden");
+		$("#" + languageTableId + " th.singular").addClass("hidden");
+		$("#" + languageTableId + " th.plural").addClass("hidden");
+		$("#" + languageTableId + " *").removeClass("matching-cases-for-rules")
+			.removeClass("nounGenderM").removeClass("nounGenderF").removeClass("nounGenderN");
+
+		if (numberStr == "") {
+			$("#" + languageTableId + " td.singular").removeClass("hidden");
+			$("#" + languageTableId + " td.plural").removeClass("hidden");
+			$("#" + languageTableId + " th.singular").removeClass("hidden");
+			$("#" + languageTableId + " th.plural").removeClass("hidden");
+		}
+		else {
+			var number = parseInt(numberStr);
+			var numberSplit = numberStr.split('');
+
+			var twoDigitending = number % 100;
+			var oneDigitending = number % 10;
+
+			console.clear();
+
+			var wholeNumberBrokenDown = new Array();
+
+			for (var i=0; i<threeDigitGroups.length; i++) {
+				var numberEnding = getNumberEnding(threeDigitGroups[i]);
+
+				var threeDigitGroupsSplit = threeDigitGroups[i].split("");
+
+				var tensEnding;
+				var hundredsEnding;
+
+				if (threeDigitGroupsSplit.length == 1) {
+					hundredsEnding = "0"; tensEnding = "0";
+				}
+				else if (threeDigitGroupsSplit.length == 2) {
+					hundredsEnding = "0";
+					tensEnding = threeDigitGroupsSplit[0] + "0";
+				}
+				else if (threeDigitGroupsSplit.length == 3) {
+					hundredsEnding = threeDigitGroupsSplit[0] + "00";
+					tensEnding = threeDigitGroupsSplit[1] + "0";
+				}
+
+
+				if (numberEnding.length == 3) {
+					hundredsEnding = "0";
+					tensEnding = "0";
+				}
+				else if (numberEnding.length == 2) {
+					tensEnding = "0";
+				}
+
+				hundredsEnding = removeLeadingZeros(hundredsEnding);
+				tensEnding = removeLeadingZeros(tensEnding);
+
+				var numberSegmentBrownDown = {
+					"hundreds" : hundredsEnding,
+					"tens" : tensEnding,
+					"numberEnding" : numberEnding,
+				};
+
+				wholeNumberBrokenDown.push(numberSegmentBrownDown);
+
+
+			}
+
+
+			var russianNumberAndNounInWords = getRussianNumberWithNounInWords(wholeNumberBrokenDown, nounToUse);
+
+			var nomCase = declineRussianNumberAndNoun(russianNumberAndNounInWords, "nom");
+			numberNomCase = nomCase;
+			var accInCase = declineRussianNumberAndNoun(russianNumberAndNounInWords, "acc-in");
+			var accAnCase = declineRussianNumberAndNoun(russianNumberAndNounInWords, "acc-an");
+			var accCase = declineRussianNumberAndNoun(russianNumberAndNounInWords, "acc");
+			var genCase = declineRussianNumberAndNoun(russianNumberAndNounInWords, "gen");
+			var datCase = declineRussianNumberAndNoun(russianNumberAndNounInWords, "dat");
+			var insCase = declineRussianNumberAndNoun(russianNumberAndNounInWords, "ins");
+			var preCase = declineRussianNumberAndNoun(russianNumberAndNounInWords, "pre");
+
+			var endBlockIndex = wholeNumberBrokenDown.length-1;
+			var endBlock = new Array();
+			endBlock.push({
+					"hundreds" : "0",
+					"tens" : "0",
+					"numberEnding" : wholeNumberBrokenDown[endBlockIndex]["numberEnding"],
+			});
+
+			var endBlockInWords = getRussianNumberWithNounInWords(endBlock, nounToUse);
+
+			endBlockCaseNom = declineRussianNumberAndNoun(endBlockInWords, "nom");
+			endBlockCaseAcc = declineRussianNumberAndNoun(endBlockInWords, "acc");
+
+			$("#" + languageTableId + " td.nom-case.with-number").html(nomCase["wordstr"]);
+
+			if (nounToUse == null) {
+
+				if (accAnCase["wordstr"] != accInCase["wordstr"]) {
+					$("#" + languageTableId + " td.acc-case.with-number").html(accInCase["wordstr"] + " (inanimate)<br/>" + accAnCase["wordstr"] + " (animate)");
+				}
+				else {
+					$("#" + languageTableId + " td.acc-case.with-number").html(accInCase["wordstr"]);
+				}
+			}
+			else {
+				$("#" + languageTableId + " td.acc-case.with-number").html(accCase["wordstr"]);
+			}
+			$("#" + languageTableId + " td.gen-case.with-number").html(genCase["wordstr"]);
+			$("#" + languageTableId + " td.dat-case.with-number").html(datCase["wordstr"]);
+			$("#" + languageTableId + " td.ins-case.with-number").html(insCase["wordstr"]);
+			$("#" + languageTableId + " td.pre-case.with-number").html(preCase["wordstr"]);
+
+			if (nounToUse != null && nomCase["wordCount"] <= 4) {
+				$("#" + languageTableId + " td.singular").removeClass("hidden");
+				$("#" + languageTableId + " td.plural").removeClass("hidden");
+				$("#" + languageTableId + " th.singular").removeClass("hidden");
+				$("#" + languageTableId + " th.plural").removeClass("hidden");
+			}
+			$("#" + languageTableId + " td.with-number").removeClass("hidden");
+			$("#" + languageTableId + " th.with-number").removeClass("hidden");
+		}
+
+		if (numberEnding) {
+			var numberEndingDesc = getNumberEndingDesc(numberEnding);
+			$("#numberCategoryDesc").html(numberEndingDesc);
+		}
+		else {
+			$("#numberCategoryDesc").html("");
+		}
+
+		/* Where the case of a noun differs to its normal case when it follows number, these
+			words are highlighted, as well as the case it references
+		*/
+		if (nounToUse != null && numberEnding) {
+			if (numberEnding == "0") {
+				$("#" + languageTableId + " td.gen-case.plural").addClass("matching-cases-for-rules ").addClass(nounGenderClass);
+				$("#" + languageTableId + " td.with-number .noun-part").addClass("matching-cases-for-rules").addClass(nounGenderClass);
+			}
+			// The number ends in the word один.
+			else if (numberEnding == "1" || numberEnding == "") {
+				// Do nothing
+			}
+			// The number ends in the word два/две, три or четыре.
+			else if (numberEnding == "2" || numberEnding == "3" || numberEnding == "4") {
+				$("#" + languageTableId + " td.gen-case.singular").addClass("matching-cases-for-rules").addClass(nounGenderClass);
+				if (endBlockCaseNom["wordstr"] == endBlockCaseAcc["wordstr"]) {
+					$("#" + languageTableId + " td.acc-case.with-number .noun-part").addClass("matching-cases-for-rules").addClass(nounGenderClass);
+				}
+				$("#" + languageTableId + " td.nom-case.with-number .noun-part").addClass("matching-cases-for-rules").addClass(nounGenderClass);
+			}
+			// The number ends in anything else
+			else {
+				$("#" + languageTableId + " td.gen-case.plural").addClass("matching-cases-for-rules").addClass(nounGenderClass);
+				if (endBlockCaseNom["wordstr"] == endBlockCaseAcc["wordstr"]) {
+					$("#" + languageTableId + " td.acc-case.with-number .noun-part").addClass("matching-cases-for-rules").addClass(nounGenderClass);
+				}
+				$("#" + languageTableId + " td.nom-case.with-number .noun-part").addClass("matching-cases-for-rules").addClass(nounGenderClass);
+			}
+		}
+
+
+		$("#nounDetails *").addClass("hidden");
+
+		if (nounToUse == null) {
+			if (numberNomCase != null) {
+				$("#nounDetails .nounLiteral").removeClass("hidden");
+				$("#nounDetails .nounLiteral").html(numberNomCase)
+			}
+			else {
+				$("#nounDetails .nounLiteral").addClass("hidden");
+			}
+		}
+		else {
+
+			$("#nounDetails .nounLiteral").removeClass("hidden");
+			$("#nounDetails .nounLiteral").html(nounToUse["nom-s"]);
+
+			if (gender == "m") $("#nounDetails .nounGenderM").removeClass("hidden");
+			else if (gender == "f") $("#nounDetails .nounGenderF").removeClass("hidden");
+			else if (gender == "n") $("#nounDetails .nounGenderN").removeClass("hidden");
+
+
+			var animate = nounToUse["animate"];
+			if (animate == "an") $("#nounDetails .nounAnimateYes").removeClass("hidden");
+			else if (animate == "in") $("#nounDetails .nounAnimateNo").removeClass("hidden");
+			else if (animate == "in-i") $("#nounDetails .nounAnimateNoInd").removeClass("hidden");
+		}
+	}
+
+
+
+	function getNumberEndingDesc(numberEnding) {
+		if (numberEnding == "0") return " is a multiple of 1000";
+		else if (numberEnding == "1") return " ends with 1";
+		else if (numberEnding == "2" || numberEnding == "3" || numberEnding == "4") return " ends with 2, 3 or 4";
+		else return " ends with 5-20 or 0";
+
+		return "";
+	}
+
+
+	function getCorrectCaseForDeclinedWord(declinedWord, numberEnding, russianCase) {
+		// The number is a multiple of 1000
+		if (numberEnding["literal"] == "0") {
+			return declinedWord["gen-p"];
+		}
+		// The number ends in the word один.
+		else if (numberEnding["literal"] == "1") {
+			if (russianCase == "nom") return declinedWord["nom-s"];
+			else if (russianCase == "acc") {
+				if (declinedWord["gender"] == "m" && declinedWord["animate"] == "an") return declinedWord["gen-s"];
+				else return declinedWord["acc-s"];
+			}
+			else if (russianCase == "gen") return declinedWord["gen-s"];
+			else if (russianCase == "dat") return declinedWord["dat-s"];
+			else if (russianCase == "ins") return declinedWord["ins-s"];
+			else if (russianCase == "pre") return declinedWord["pre-s"];
+		}
+		// The number ends in the word два/две, три or четыре.
+		else if (numberEnding["literal"] == "2" || numberEnding["literal"] == "3" || numberEnding["literal"] == "4") {
+			if (russianCase == "nom") return declinedWord["gen-s"];
+			else if (russianCase == "acc") {
+				if (declinedWord["animate"] == "an") return declinedWord["gen-p"];
+				else return declinedWord["gen-s"];
+			}
+			else if (russianCase == "gen") return declinedWord["gen-p"];
+			else if (russianCase == "dat") return declinedWord["dat-p"];
+			else if (russianCase == "ins") return declinedWord["ins-p"];
+			else if (russianCase == "pre") return declinedWord["pre-p"];
+		}
+		// The number ends in anything else
+		else {
+			if (russianCase == "nom") return declinedWord["gen-p"];
+			else if (russianCase == "acc") return declinedWord["gen-p"];
+			else if (russianCase == "gen") return declinedWord["gen-p"];
+			else if (russianCase == "dat") return declinedWord["dat-p"];
+			else if (russianCase == "ins") return declinedWord["ins-p"];
+			else if (russianCase == "pre") return declinedWord["pre-p"];
+		}
+
+		return declinedWord[russianCase + "-s"];
+	}
+
+	function declineRussianNumberAndNoun(russianNumberAndNounInWords, russianCase) {
+
+		var wordToReturn = "";
+		var wordCount = 0;
+
+		for (var i=0; i<russianNumberAndNounInWords.length; i++) {
+
+			var isEndBlock = i == russianNumberAndNounInWords.length - 1;
+
+			var nextWordBlock = russianNumberAndNounInWords[i];
+
+			var hundreds = nextWordBlock["hundreds"];
+			var tens = nextWordBlock["tens"];
+			var numberEnding = nextWordBlock["numberEnding"];
+			var declinedWord = nextWordBlock["declinedWord"];
+
+			var hundredsEmpty = hundreds["literal"] == 0;
+			var tensEmpty = tens["literal"] == 0;
+			var numberEndingEmpty = numberEnding["literal"] == 0;
+
+
+			var russianCaseForNumbers = russianCase;
+
+			if (russianCase == "acc-an" || (russianCase == "acc" && declinedWord && declinedWord["animate"] == "an")) {
+				if (isEndBlock) {
+					russianCaseForNumbers = "acc-an";
+				}
+				else {
+					russianCaseForNumbers = "acc-in";
+				}
+			}
+			else if (russianCase == "acc-in" || russianCase == "acc") {
+				russianCaseForNumbers = "acc-in";
+			}
+
+			if (hundredsEmpty && tensEmpty && numberEnding["literal"] == "1" && !isEndBlock) {
+				// Do nothing
+			}
+			else {
+				if (!hundredsEmpty) {
+					wordToReturn += " " + hundreds[russianCaseForNumbers];
+					wordCount++;
+				}
+				if (!tensEmpty) {
+					wordToReturn += " " + tens[russianCaseForNumbers];
+					wordCount++;
+				}
+				if (!numberEndingEmpty || (russianNumberAndNounInWords.length == 1 && numberEndingEmpty)) {
+					wordToReturn += " " + numberEnding[russianCaseForNumbers];
+					wordCount++;
+				}
+			}
+
+			if (isEndBlock && declinedWord == null) {
+				// Do nothing
+			}
+			else if (!numberEndingEmpty || isEndBlock) {
+				if (!isEndBlock) {
+					var russianCaseToUse = russianCase.startsWith("acc") ? "acc" : russianCase;
+					wordToReturn += " <b>" + getCorrectCaseForDeclinedWord(declinedWord, numberEnding, russianCaseToUse) + "</b>";
+					wordCount++;
+				}
+				else {
+					var russianCaseToUse = russianCase.startsWith("acc") ? "acc" : russianCase;
+					wordToReturn += " <span class='noun-part'>" + getCorrectCaseForDeclinedWord(declinedWord, numberEnding, russianCaseToUse) + "</span>";
+					wordCount++;
+				}
+			}
+		}
+		return {"wordstr": wordToReturn, "wordCount": wordCount};
+	}
+
+
+	$("#numberInput").on('input', function(){
+		  declineNumber($("#numberInput").val());
+	});
+
+	$("#nounSelection").change(function() {
+		declineNumber($("#numberInput").val());
+	});
+
+	$( document ).ready(function() {
+		var tmpOptions = [];
+
+		var option = document.createElement("option");
+		option.value = "no noun";
+		option.text = "(no noun)";
+		tmpOptions.push(option);
+
+		for (var key in exampleNouns) {
+			var option = document.createElement("option");
+			option.value = "" + key;
+			option.text = exampleNouns[key]["nom-s"] + " (" + exampleNouns[key]["english"] + ")";
+
+			tmpOptions.push(option);
+		}
+
+		$("#nounSelection").append(tmpOptions);
+
+		declineNumber($("#numberInput").val());
+	});
+</script>
+{% endblock %}

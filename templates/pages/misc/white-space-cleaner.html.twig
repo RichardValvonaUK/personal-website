@@ -1,0 +1,63 @@
+{% extends "/standard-page.html.twig" %}
+
+{% block title %}White-Space Cleaner{% endblock %}
+
+{% block content %}
+<p>
+Copying text from a CV in PDF format to enter it onto an online application form? Fed up with it looking messy with the spaces being doubled or converted into new-line characters? Then use this simple tool which will tidy it up instantly. All white space will be converted into single spaces while preserving the white space between paragraphs.
+</p>
+<p>Paste your text into the top box and your tidy text will appear in the box at the bottom.
+</p>
+<section class="background-white">
+	<p style="color: #c00;">Please be aware that some characters, such as hyphens, "-", may not copy from your PDF file. What you paste into this app is what is stored in your computer's clipboard when you hit Ctrl+C. It is your responsibility to check that the text is how you want it to be when using it for anything. This includes (but is not limited to), job applications, legal documents, visas and so on. </p>
+</section>
+<p>
+<textarea id="input-text" placeholder="Enter your text here" style="width: 100%;" rows="20" oninput="setTimeout(tidyWhitespace, 0);"></textarea>
+<button style="width: 100%; height: 2em;" onclick="copyOutput()">Select and copy clean text (from below)</button>
+<br/>
+<textarea id="output-text" placeholder="Your output will appear here" style="width: 100%;" rows="20"></textarea>
+</p>
+<script type="text/javascript">
+	
+	function copyOutput() {
+		var copyText = $("#output-text");
+  		copyText.select();
+  		document.execCommand("Copy");
+	}
+	  
+
+	function tidyWhitespace() {
+		var input = $('#input-text').val().trim().replace(/\r\n/g, "\n");
+		
+		var output = "";
+		
+		var inputArr = input.split(/\n/g);
+		
+		var currentLine = inputArr[0].trim().replace(/\s+/g, ' ');
+		
+		for (var i=0; i<inputArr.length; i++) {
+			var nextLine = null;
+			if (i<inputArr.length-1) {
+				nextLine = inputArr[i+1].trim().replace(/\s+/g, ' ');
+			}
+			else {
+				nextLine = '';
+			}
+			
+			if (currentLine == '') {
+				output += '\n';
+			}
+			else if (nextLine == '') {
+				output += currentLine + '\n';
+			}
+			else {
+				output += currentLine + ' ';
+			}
+			
+			currentLine = nextLine;
+		}
+		
+		$('#output-text').val(output.trim());
+	}
+</script>
+{% endblock %}

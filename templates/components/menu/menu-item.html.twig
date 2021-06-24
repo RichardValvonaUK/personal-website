@@ -1,0 +1,8 @@
+<li{% if (menuitem.link is defined) and (currenturl == menuitem.link) %} style='background: #ff0'{% endif %}>
+	{% if menuitem.sub is defined %}
+		<a class="menu-item with-sub-menu"{% if menuitem.link is defined %} href="{{ menuitem.link }}"{% endif %}>{{ menuitem.name }}</a>
+		{% include('components/menu/menu-group.html.twig') with {'sub': menuitem.sub, 'currenturl': currenturl} only %}
+	{% else %}
+		<a class="menu-item"{% if menuitem.link is defined %} href="{{ menuitem.link }}"{% endif %}>{{ menuitem.name }}</a>
+	{% endif %}
+</li>

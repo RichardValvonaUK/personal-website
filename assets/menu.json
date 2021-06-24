@@ -1,0 +1,33 @@
+{
+    "menu":
+        [
+            {"name": "Home", "link": "/"},
+            {"name": "About", "link": "/about"},
+            {"name": "Travel", "sub":
+                [
+                    {"name": "Bellingham, USA","link": "/trip-to-bellingham", "sub":
+                        [
+                            {"name": "My experience of Bellingham - Video","link": "/trip-to-bellingham/video-about-bellingham"},
+                            {"name": "Woods Coffee, Bellingham - Video","link": "/trip-to-bellingham/video-about-woods-coffee"},
+                            {"name": "Whale Cruise to San Juan Island","link": "/trip-to-bellingham/whale-cruise-to-san-juan-island"},
+                            {"name": "What's Bellingham like as a place?","link": "/trip-to-bellingham/what-its-like"},
+                            {"name": "Getting to and from Bellingham","link": "/trip-to-bellingham/getting-to-bellingham"}
+                        ]
+                    }
+                ]
+            },
+            {"name": "Tools", "sub":
+                [
+                    {"name": "Russian Language Tools", "link": "/russian-lab", "sub":
+                        [
+
+                            {"name": "Russian Alphabet and Pronunciation Guide","link": "/russian-lab/how-to-pronounce-letters"},
+                            {"name": "Russian Number Conjugator","link": "/russian-lab/cardinal-numbers-with-nouns"},
+                            {"name": "Russian Word Conjugator","link": "/russian-lab/word-conjugator"}
+                        ]
+                    },
+                    {"name": "White-Space Cleaner", "link": "/misc/white-space-cleaner"}
+                ]
+            }
+      ]
+}
