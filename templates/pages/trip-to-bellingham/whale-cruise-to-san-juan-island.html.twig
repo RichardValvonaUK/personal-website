@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<?php echo \Images::create('right-floating-image', 'whale-cruise-picture-on-boat.jpg', null, null); ?>
+<img class="right-floating-image" src="{{ asset('build/images/bellingham-trip/whale-cruise-picture-on-boat.jpg') }}" alt="" />
 <p>
 During my visit to Bellingham, I went out on a cruise to one of the islands. There are many islands between the West Coast and nearby Canada and it would be a shame to not go to at least one of them. Before setting off, we walked from Cordata to Downtown since the local buses run later on a Sunday. Then we took the bus down to Fairhaven. All well and good.
 </p>
@@ -16,44 +16,43 @@ Anyway, we got onto a small boat. It was a lot smaller than I expected but still
 While at sea, we saw porpoises flipping out of the water and an elephant seal on one of the port buoys. Unfortunately, we didn't see any whales on this occasion and so received vouchers for 50% off our next trip. However, it was still a pleasant day out and we were provided with a delicious on-board lunch.
 </p>
 <h3>On San Juan Island</h3>
-<?php echo \Images::create('right-floating-image', 'entering-friday-harbour.jpg', null, null); ?>
+<img class="right-floating-image" src="{{ asset('build/images/bellingham-trip/entering-friday-harbour.jpg') }}" alt="" />
 <p>
 When we arrived at San Juan Island, we were told that there was a "resident" seal that lives in the harbour. We were hopeful that we would see it but instead of that, we saw a jellyfish. How similar can you get! I was amased that some of our fellow passengers were poking their fingers into the water and touching these jellyfish knowing full well that they can sting. I have no clue what species of jellyfish these were but they looked much smaller than the ones we find at home.
 </p>
 <p>
 The atmosphere of the island had a very slow and laid back vibe about it, similar to back at home on the Isle of Wight. It was a lovely sunny day and we just decided to stay near to the harbour and relax in the sunshine. After an hour's walk early in the morning, we didn't feel like doing any more. Also, time was limited so we explored some of the local shops and eateries which surprisingly for America were very close together like an English town.
 </p>
-<?php echo \Comps::clearWrap(); ?>
+<span class="clear-wrap" /></span>
 <br /><br />
 <h3>Drinking magic potion</h3>
-<?php echo \Images::create('left-floating-image', 'green-coffee-water.jpg', 300, null); ?>
+<img class="left-floating-image" width="300px" src="{{ asset('build/images/bellingham-trip/green-coffee-water.jpg') }}" alt="" />
 <p>
 We went to look for somewhere to get a coffee and first came across "The Coffee Bar". I expected it to be just a normal place to get a coffee and because it was small, assumed that it was a coffee take-away service. I was wrong! It was actually a type of place to do with cleansing and detoxifying the body.
 </p>
 <p>
 The lady who runs it had this green tonic potion-looking liquid made with coffee beans and we tried it. I was surprised she didn't have a broomstick with her. It didn't really have much of a taste like regular coffee but it was still meant to provide that caffiene hit with additional health benefits. Not really the type of thing I would typically buy but for the hippy traveller or someone into the holistic approach to healthy living, this is definitely a place that I would recommend checking out.
 </p>
-<?php echo \Comps::clearWrap(); ?>
+<span class="clear-wrap" /></span>
 <br /><br />
 <h3>Getting a *real* drink</h3>
-<?php echo \Images::create('right-floating-image margin-at-bottom', 'the-bean-cafe-san-juan-island.jpg', null, null); ?>
+<img class="right-floating-image margin-at-bottom" src="{{ asset('build/images/bellingham-trip/the-bean-cafe-san-juan-island.jpg') }}" alt="" />
 <p>
-In the end, we stopped at <?php echo URLS::absLink('The Bean Café', 'http://www.thebeancafe.com/', null); ?> and had a large latté. We must say that it was a really decent brew. I wasn't even aware that their coffee was locally sourced until looking at their website. This place was also recommended to us by the lady who runs The Coffee Bar which means that there are at least three of us who recommend this place.
+In the end, we stopped at <a href="http://www.thebeancafe.com/">The Bean Café</a> and had a large latté. We must say that it was a really decent brew. I wasn't even aware that their coffee was locally sourced until looking at their website. This place was also recommended to us by the lady who runs The Coffee Bar which means that there are at least three of us who recommend this place.
 </p>
-<?php echo \Comps::clearWrap(); ?>
+<span class="clear-wrap" /></span>
 <br /><br />
-<?php echo \Images::create('left-floating-image', 'belted-kingfisher.jpg', 250, null); ?>
+<img class="left-floating-image" src="{{ asset('build/images/bellingham-trip/belted-kingfisher.jpg') }}" width="250px" alt="" />
 <h3>Looking out onto the harbour</h3>
 <p>
-We took our coffees outside and went down to the harbour and sat there for a while, while looking at the water. As I've been trying to take as many bird photos as possible while out in the States, there was another type of bird which landed on one of the wooden stumps. I zoomed in and to my joy it was a kingfisher. I honestly didn't think I'd get a picture of one since seeing kingfishers back in the UK has been very unsuccessful for me. They just never seem to show up despite having a bright electric blue and orange plumage. Here is more information about <?php echo URLS::absLink('the Belted Kingfisher in the United States', 'https://www.allaboutbirds.org/guide/Belted_Kingfisher/id', null); ?> and the <?php echo URLS::absLink('species of kingfisher back in the UK', 'https://www.rspb.org.uk/discoverandenjoynature/discoverandlearn/birdguide/name/k/kingfisher/', null); ?>.
-
+We took our coffees outside and went down to the harbour and sat there for a while, while looking at the water. As I've been trying to take as many bird photos as possible while out in the States, there was another type of bird which landed on one of the wooden stumps. I zoomed in and to my joy it was a kingfisher. I honestly didn't think I'd get a picture of one since seeing kingfishers back in the UK has been very unsuccessful for me. They just never seem to show up despite having a bright electric blue and orange plumage. Here is more information about <a href="https://www.allaboutbirds.org/guide/Belted_Kingfisher/id">the Belted Kingfisher in the United States</a> and the <a href="https://www.rspb.org.uk/discoverandenjoynature/discoverandlearn/birdguide/name/k/kingfisher/">species of kingfisher back in the UK</a>.
 </p>
-<?php echo \Comps::clearWrap(); ?>
+<span class="clear-wrap" /></span>
 <br /><br />
 <h3>Link to Deluxe San Juan Islands Whale Watch</h3>
 <p>
-<?php echo URLS::absLink(null, 'http://whales.com/whale-watching/', null); ?>
+<a href="http://whales.com/whale-watching/">http://whales.com/whale-watching</a>
 </p>
-<?php echo \Comps::clearWrap(); ?>
+<span class="clear-wrap" /></span>
 <div class="date-stamp">Posted on Sunday 29th May 2016</div>
 {% endblock %}

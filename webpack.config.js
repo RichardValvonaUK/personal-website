@@ -13,7 +13,8 @@ Encore
     
 
     .copyFiles({
-        from: './assets/components/'
+        from: './assets/images/',
+        to: 'images/[path][name].[ext]'
     })
     
     // public path used by the web server to access the output path
@@ -28,6 +29,8 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    .addEntry('russian-conj', './assets/pages/russian-conj/russian-conj.js')
+    
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -76,7 +79,7 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();

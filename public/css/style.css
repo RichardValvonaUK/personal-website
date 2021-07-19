@@ -155,6 +155,7 @@ h3 {
     font-size: 1.3em;
     padding-bottom: 10px;
     font-weight: bold;
+    clear: both;
 }
 
 h4 {
@@ -970,8 +971,12 @@ body.no-refresh-scroll {
 @media screen and (min-width: 988px) {
 
 
-	div#pre-content, img#index-cover {
+	div#pre-content.main-page, div#pre-content.main-page img#index-cover {
 		min-height: 328px;
+	}
+	
+	div#pre-content.standard-page, div#pre-content.standard-page img#index-cover {
+		min-height: 186px;
 	}
 
 	header .title-and-menu {

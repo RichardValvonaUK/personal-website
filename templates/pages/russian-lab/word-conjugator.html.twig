@@ -2,6 +2,10 @@
 
 {% block title %}Word Conjugator{% endblock %}
 
+{% block pagespecificjs %}
+	{{ encore_entry_script_tags('russian-conj') }}
+{% endblock %}
+
 {% block content %}
 <p>Use this little app if you wish to know how a word is declined. The data used in this database has been extracted from Wiktionary and converted to MySQL so that you can easily find any word you want and see all of its declinations including any lesser well-known ones. It doesn't matter whether you lookup the instrumental form of a noun or the comparative of a verb, all word forms for a word are in the database. Also, it doesn't matter whether you know how a word is spelt. The search algorithm used in this app has been designed for sorting results starting with the closest spelling while keeping a high efficiency.
 <br/><br/>
@@ -49,59 +53,16 @@ You can currently search for nouns, adjectives and verbs but other word types wi
 		</table>
 	</div>
 	<span class="bg-light">
-		<?php require('nouns-table.html'); ?>
-		<?php require('adjectives-table.html'); ?>
-		<?php require('verbs-table.html'); ?>
+		{% set directory = (_self | split('/') | slice(0, -1) | join('/')) ~ '/' %}
+		
+		{{ include(directory ~ 'word-conjugator-components/nouns-table.html.twig') }}
+		{{ include(directory ~ 'word-conjugator-components/adjectives-table.html.twig') }}
+		{{ include(directory ~ 'word-conjugator-components/verbs-table.html.twig') }}
 	</span>
 	<br/>
 </form>
 <script type="text/javascript">
-	<?php require('word-conjugator-maps-and-arrays.js'); ?>
-	<?php require('word-conjugator-functions.js'); ?>
-	<?php require('word-conjugator-search-text-russian-operations.js'); ?>
 
-
-
-	$("body").addClass("no-refresh-scroll");
-
-
-	$( "#transliteration" ).mousedown(function(e){
-		//e.preventDefault();
-	});
-
-	$( "#transliteration .key-to-press" ).click(function(e){
-		insertText($("#searchTextRussian"), $(this).text());
-	});
-
-	$( "#variantsCheckBox" ).change(function() {
-		doSearch();
-	});
-
-	$("#searchButton").click(function(){
-
-
-		/*
-		$.ajax({url: "demo_test.txt", success: function(result){
-			$("#div1").html(result);
-		}});
-		*/
-	});
-
-	$("#randomButton").on('click', function(e) {
-		setSearchWordFromId("random");
-	});
-
-	$(document).ready(function() {
-		enableButtons("#nounTable");
-		enableButtons("#adjectiveTable");
-		enableButtons("#verbTable");
-	});
-
-	$(document).keyup(function(e) {
-		if (e.keyCode === 27) {
-			$('.closable-window').addClass("hidden");
-		}
-	});
 
 </script>
 {% endblock %}

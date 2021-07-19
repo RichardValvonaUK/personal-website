@@ -6,7 +6,7 @@
 <p>
 I was in Bellingham for two and a half months nearly and must say that it was a pleasant experience. Before coming to the United States, I was quite nervous about it being ultra competitive and that I would have to be treading really carefully, but I was totally wrong, about this area anyway.
 </p>
-<?php echo \Images::create('autoscale-image', 'restaurants-in-cordata.jpg', null, null); ?>
+<img class="autoscale-image" src="{{ asset('build/images/bellingham-trip/restaurants-in-cordata.jpg') }}" alt="" />
 <br/><br/>
 <h3>The People</h3>
 <p>
@@ -17,8 +17,8 @@ Another big difference that may surprise you is the lack of antisocial behaviour
 </p>
 <h3>Footpaths</h3>
 <p>
-Expanding on the <?php echo URLS::absLink('footpaths, there are  many decent places to go out walking in and around Bellingham, WA', 'http://www.bellingham.org/activities/hiking/', null); ?>. Whilst the streets are definitely designed for the car, which is the standard across the United States, there are many really nice parks around here that you're never that far away from one and best of all, there is a <?php echo URLS::absLink('decent bus network, "Whatcom Transportation Authority" which connects Bellingham', 'http://www.ridewta.com/', null); ?> to a lot of these sights and other nearby cities. Even better, if you have a bike then each bus is equipped to carry two bikes on the front.
+Expanding on the <a href="http://www.bellingham.org/activities/hiking/">footpaths, there are  many decent places to go out walking in and around Bellingham, WA</a>. Whilst the streets are definitely designed for the car, which is the standard across the United States, there are many really nice parks around here that you're never that far away from one and best of all, there is a <a href="http://www.ridewta.com/">decent bus network, "Whatcom Transportation Authority" which connects Bellingham</a> to a lot of these sights and other nearby cities. Even better, if you have a bike then each bus is equipped to carry two bikes on the front.
 </p>
-<?php echo \Comps::clearWrap(); ?>
+<span class="clear-wrap" /></span>
 <br /><br />
 {% endblock %}

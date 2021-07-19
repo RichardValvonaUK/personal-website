@@ -1,12 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block precontent %}
-<div id="pre-content">
+<div id="pre-content" class="main-page">
 	<div id="index-banner">
 		<div class="caption">Richard Valvona</div>
 		<div class="brief-description">Software Developer for Portsmouth and beyond...</div>
 	</div>
-	<img id="index-cover" src="/build/images/index-cover.jpg" />
+	<img id="index-cover" src="{{ asset('build/images/index-cover.jpg') }}" />
 	<img id="index-image" src="{{ asset('build/images/index-image.jpg') }}" alt="Main Picture">
 </div>
 {% endblock %}

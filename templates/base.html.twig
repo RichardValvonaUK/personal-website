@@ -4,6 +4,14 @@
         <meta charset="UTF-8">
         <title>Richard Valvona | {% block title %}{% endblock %}</title>
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
+        
+        {% block javascripts %}
+        
+			{{ encore_entry_script_tags('app') }}
+        	{% block pagespecificjs %}
+			{% endblock %}
+        {% endblock %}
+        
 	</head>
 	<body>
 	<div id="page">
