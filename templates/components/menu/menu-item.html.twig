@@ -1,6 +1,8 @@
 <li{% if (menuitem.link is defined) and (currenturl == menuitem.link) %} style='background: #ff0'{% endif %}>
+	{# If this item contains a submenu, then this menu item contains two a tags - one for PC menu and the other for mobile #}
 	{% if menuitem.sub is defined %}
-		<a class="menu-item with-sub-menu"{% if menuitem.link is defined %} href="{{ menuitem.link }}"{% endif %}>{{ menuitem.name }}</a>
+		<a class="menu-item with-sub-menu hidden-on-mobile-and-tablet"{% if menuitem.link is defined %} href="{{ menuitem.link }}"{% else %} href="javascript:void(0);"{% endif %}>{{ menuitem.name }}</a>
+		<a class="menu-item with-sub-menu hidden-on-pc" href="javascript:void(0);">{{ menuitem.name }}</a>
 		{% include('components/menu/menu-group.html.twig') with {'sub': menuitem.sub, 'currenturl': currenturl} only %}
 	{% else %}
 		<a class="menu-item"{% if menuitem.link is defined %} href="{{ menuitem.link }}"{% endif %}>{{ menuitem.name }}</a>

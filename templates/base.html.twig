@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>Richard Valvona | {% block title %}{% endblock %}</title>
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="{{ asset('build/app.css') }}" rel="stylesheet" type="text/css"/>
         
         {% block javascripts %}
         
@@ -17,11 +18,6 @@
 	<div id="page">
 		<header>
 			<?php include BASE_DIR_CONTENT . "/views/layout-components/header.php"; ?>
-			<div id="mobile-menu" class="left-menu block-table-cell">
-				<div class="menu-holder">
-					<!-- php if (!$controller->androidMode) include BASE_DIR_CONTENT . "/views/layout-components/menu.php"; -->
-				</div>
-			</div>
 			<div class="title-and-menu menu-closed">
 				<span class="title-and-toggler">
 					<span class="menu-toggler hidden-on-pc" style="color: #008;">

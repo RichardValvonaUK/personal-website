@@ -1,0 +1,180 @@
+table.language-table {
+    padding: 5px 0 0 10px;
+    font-size: 1em;
+    border-spacing: 0;
+}
+
+table thead td, table.language-table td:first-child {
+}
+
+table.color-scheme1 {
+	background: #e33;
+}
+table.color-scheme1 td {
+	background: #ff8;
+}
+
+table.color-scheme2 {
+
+}
+table.color-scheme2 td {
+}
+
+table.color-scheme3 {
+	background: #999;
+}
+table.color-scheme3 tr:first-child td,
+table.color-scheme3 tr td:first-child {
+	background: #fff;
+}
+table.color-scheme3 tr:not(:first-child) td:not(:first-child) {
+	background: #ff8;
+}
+
+#resultsList td {
+	vertical-align: top;
+}
+
+.nounLiteral { font-size: 1.4em; }
+
+.noun-gender {
+	text-align: center;
+	font-weight: bold;
+    border: 1px solid;
+    border-radius: 50%;
+    height: 1.5em;
+    width: 1.5em;
+    line-height: 1.5em;
+    display: inline-block;
+}
+
+.noun-gender.m { color: #f00; border-color: #f00; }
+.noun-gender.f { color: #00f; border-color: #00f; }
+.noun-gender.n { color: #080; border-color: #080; }
+
+#autoDeclensionTable td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+#autoDeclensionTable td:first-child {
+	width: 5em;
+}
+
+
+#autoDeclensionTable, .word-conjugations-table {
+    border-spacing: 1px;
+}
+
+
+.closable-window .content {
+	overflow: auto;
+    background: #c6f1fe;
+}
+
+.closable-window div {
+	clear: both;
+}
+
+.word-conjugations-table tr:not(:first-child) td {
+	border-top: 1px solid #888;
+}
+
+.word-conjugations-table tr.short-forms:not(:first-child) td,
+.word-conjugations-table tr.other-forms:not(:first-child) td {
+    border-top-width: 3px;
+}
+
+.matching-cases-for-rules {
+    font-weight: bold;
+}
+
+.row-heading td {
+	background: #ff8;
+}
+
+.case-heading {
+	color: #666;
+	font-weight: normal !important;
+	font-style: italic;
+}
+
+/*********************************** Russian *****************************/
+
+.result-entry {
+
+}
+
+.word-conjugations-table td {
+    padding: 0.5em 1em;
+}
+
+.word-conjugations-table select {
+	width: 100%;
+}
+
+#transliteration .g1 {
+	background-color: #ff8;
+}
+
+#transliteration .g2 {
+	background-color: #8f8;
+}
+
+#transliteration .g3 {
+	background-color: #8ff;
+}
+
+#transliteration .g4 {
+	background-color: #fff;
+}
+
+#verbTable td:first-child, #nounTable td:first-child, #adjectiveTable td:first-child {
+	border-right: 3px double #000;
+}
+
+#verbTable, #nounTable, #adjectiveTable {
+	z-index: 99999;
+}
+
+.column-2 {
+	border-right: 3px double #000;
+}
+
+/* Mobile layout */
+@media screen and (max-width: 979px) {
+	#transliteration {
+		table-layout: fixed;
+	}
+}
+
+/* PC layout */
+@media screen and (min-width: 980px) {
+	
+	
+	#resultsList {
+		font-size: 1.2em;
+	}
+}
+
+.word-type, .noun-animate, .noun-indeclinable {
+	font-style: italic;
+}
+
+#resultsListHolder {
+	background: linear-gradient(red,blue);
+    overflow-y: auto;
+    border: 3px double #f60;
+    border-radius: 0 0 15px 15px;
+	position: relative;
+}
+
+#resultsList {
+	background: #fff;
+}
+
+.declension-options {
+	position: relative;
+	float: right;
+}
