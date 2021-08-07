@@ -1,6 +1,6 @@
 <ul class="menu">
-	{% for menuitem in sub %}
-		{% include('components/menu/menu-item.html.twig') with {'menuitem': menuitem, 'currenturl': currenturl} only %}
-	{% endfor %}
-	<!-- include all menu items -->
+{% for menuitem in sub %}
+{% include('components/menu/menu-item.html.twig') with {'menuitem': menuitem, 'currenturl': currenturl} only %}
+{% endfor %}
+<!-- include all menu items -->
 </ul>
